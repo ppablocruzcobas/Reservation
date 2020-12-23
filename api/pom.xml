@@ -12,7 +12,7 @@
   <packaging>war</packaging>
     
   <dependencies>
-  	<!-- Spring MVC Dependency -->
+  	<!-- Spring MVC dependency -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
@@ -23,17 +23,34 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
-	<!-- Servlet Dependency -->
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>4.0.1</version>
+	  <groupId>org.springframework.boot</groupId>
+	  <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
 
+	<!-- Database dependency -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>6.0.0.Alpha6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-orm</artifactId>
+    </dependency>
+    
     <dependency>
       <groupId>mysql</groupId>
 	  <artifactId>mysql-connector-java</artifactId>
 	  <version>8.0.22</version>
+    </dependency>
+ 
+	<!-- Servlet dependency -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
     </dependency>
   </dependencies>
   
