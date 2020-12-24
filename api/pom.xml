@@ -30,7 +30,7 @@
 
 	<!-- Database dependency -->
     <dependency>
-      <groupId>org.hibernate</groupId>
+      <groupId>org.hibernate.orm</groupId>
       <artifactId>hibernate-core</artifactId>
       <version>6.0.0.Alpha6</version>
     </dependency>
@@ -39,7 +39,12 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
     </dependency>
-    
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>mysql</groupId>
 	  <artifactId>mysql-connector-java</artifactId>
@@ -51,6 +56,25 @@
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>4.0.1</version>
+    </dependency>
+
+    <!-- Jackson API for JSON -->
+	<dependency>
+	  <groupId>com.fasterxml.jackson.core</groupId>
+	  <artifactId>jackson-core</artifactId>
+	  <version>2.12.0</version>
+    </dependency>
+
+	<dependency>
+	  <groupId>com.fasterxml.jackson.core</groupId>
+	  <artifactId>jackson-databind</artifactId>
+	  <version>2.12.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>2.12.0</version>
     </dependency>
   </dependencies>
   
