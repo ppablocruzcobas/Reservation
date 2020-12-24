@@ -25,7 +25,7 @@ public class ContactController {
 
     @GetMapping("/contacts")
     public @ResponseBody List<Contact> getAllContacts() {
-        return contactService.getAllContacts();
+        return contactService.contacts();
     }
 
     @PostMapping("/contact")

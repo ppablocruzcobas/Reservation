@@ -16,7 +16,7 @@ public class WebConfig extends WebMvcConfigurationSupport {
     @Bean
     public InternalResourceViewResolver resolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/resources/templates/");
+        resolver.setPrefix("/resources/webapp/");
         resolver.setSuffix(".html");
         return resolver;
     }
