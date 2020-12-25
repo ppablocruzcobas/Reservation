@@ -9,7 +9,7 @@
   <groupId>com.isu</groupId>
   <artifactId>reservation</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
     
   <dependencies>
   	<!-- Spring MVC dependency -->
@@ -21,11 +21,6 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-
-    <dependency>
-	  <groupId>org.springframework.boot</groupId>
-	  <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
 
 	<!-- Database dependency -->
@@ -79,12 +74,56 @@
   </dependencies>
   
   <build>
-  	<plugins>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <executable>ng</executable>
+          <workingDirectory>ui</workingDirectory>
+          <arguments>
+            <argument>build</argument>
+            <argument>--prod</argument>
+          </arguments>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.2.0</version>
+		<executions>
+		  <execution>
+		    <id>copy-resources</id>
+		    <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+			<configuration>
+              <outputDirectory>src/main/resources/static</outputDirectory>
+			  <resources>
+			    <resource>
+                  <directory>ui/dist/webapp/</directory>
+			    </resource>
+			  </resources>
+			</configuration>
+		  </execution>
+		</executions>
+	  </plugin>
+
   	  <plugin>
   	  	<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
-  	</plugins>
+    </plugins>
   </build>
   
 </project>
