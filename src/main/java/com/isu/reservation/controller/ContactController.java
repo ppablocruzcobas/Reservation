@@ -29,16 +29,19 @@ public class ContactController {
     }
 
     @PostMapping("/contact")
-    public @ResponseBody void createContact(@RequestBody Contact contact) {
-        contactService.save(contact);
+    public @ResponseBody Contact createContact(@RequestBody Contact contact) {
+        return contactService.save(contact);
     }
 
     @PutMapping("/contact/{id}")
-    public @ResponseBody Contact editContact(@PathVariable("id") int id, @RequestBody Contact contact) {
-        return contact;
+    public @ResponseBody String editContact(@PathVariable("id") Long id, @RequestBody Contact contact) {
+        contactService.update(id, contact);
+        return "Contact updated.";
     }
 
     @DeleteMapping("/contact/{id}")
-    public @ResponseBody void delete(@PathVariable("id") int id) {
+    public @ResponseBody String delete(@PathVariable("id") Long id) {
+        contactService.delete(id);
+        return "Contact deleted.";
     }
 }

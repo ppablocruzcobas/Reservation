@@ -26,11 +26,21 @@ public class ContactService {
     }
 
     @Transactional
-    public void save(Contact contact) {
-        contactRepository.save(contact);
+    public Contact save(Contact contact) {
+        return contactRepository.save(contact);
     }
 
     @Transactional
     public void update(Long id, Contact newContact) {
+        Contact contact = contactRepository.findById(id).get();
+        contact.setName(newContact.getName());
+        contact.setType(newContact.getType());
+        contact.setBirthday(newContact.getBirthday());
+        save(contact);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        contactRepository.deleteById(id);
     }
 }

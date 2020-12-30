@@ -1,8 +1,12 @@
 package com.isu.reservation.model;
 
 import java.sql.Date;
-import java.util.Set;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,18 +22,21 @@ public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
 
+    @Column(name = "type")
+    private String type;
+
     @Column(name = "birthday")
-    private Date birthday;
+    private Timestamp birthday;
 
-    @OneToMany(mappedBy = "contact")
-    Set<Reservation> reservations;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contact")
+    private List<Reservation> reservations = new ArrayList<>();
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -41,19 +48,20 @@ public class Contact {
         return name;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setBirthday(Timestamp birthday) {
         this.birthday = birthday;
     }
 
-    public Date getBirthday() {
+    public Timestamp getBirthday() {
         return birthday;
     }
 
-    public void setReservation(Reservation reservation) {
-        this.reservations.add(reservation);
-    }
-
-    public Set<Reservation> getReservation() {
-        return reservations;
-    }
 }

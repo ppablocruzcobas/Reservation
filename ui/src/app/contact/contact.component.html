@@ -1,0 +1,34 @@
+<div class="container">
+  <form [formGroup]="formContact" (ngSubmit)="onContactSubmit()">
+
+    <div class="form-group row">
+      <div class="col-sm mt-3">
+        <input class="form-control" type="text" placeholder="Contact Name..." (keyup.enter)="onContactNameInput()"
+          formControlName="name">
+      </div>
+
+      <div class="col-sm mt-3">
+        <select class="selectpicker form-control" formControlName="type" title="Contact Type">
+          <option>Contact Type 1</option>
+          <option>Contact Type 2</option>
+          <option>Contact Type 3</option>
+        </select>
+      </div>
+
+      <div class="col-sm mt-3">
+        <input class="form-control" type="text" placeholder="Phone:" formControlName="phone">
+      </div>
+
+      <div class="col-sm mt-3">
+        <input class="form-control" type="text" placeholder="Birth Date" formControlName="birthday">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md col-sm">
+        <button class="btn btn-primary float-right" type="submit">Send</button>
+      </div>
+    </div>
+
+  </form>
+</div>

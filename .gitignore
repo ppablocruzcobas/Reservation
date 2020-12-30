@@ -34,3 +34,4 @@ build/
 
 ### Custom ###
 doc/
+src/main/resources/static

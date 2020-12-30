@@ -1,0 +1,20 @@
+<div class="container">
+  <table class="table" style="width: 100%;">
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Date</th>
+    </tr>
+    <tr *ngFor="let reservation of reservations">
+      <td>{{reservation.contact.name}}</td>
+      <td>{{reservation.description}}</td>
+      <td>{{reservation.date}}</td>
+    </tr>
+    <tr *ngIf="!reservations">
+      <td colspan="3">Loading... Please wait....</td>
+    </tr>
+    <tr *ngIf="reservations && reservations.length == 0">
+      <td colspan="3">No records found!</td>
+    </tr>
+  </table>
+</div>

@@ -5,6 +5,6 @@ The backend is developed with Spring MVC through a Rest API and the frontend wit
 
 **Steps to run the project**:
 
-    -   install maven (*if already not installed*).
+    -   install maven.
 
-    -   mvn spring-boot:run
+    -   mvn spring-boot:run.
