@@ -30,6 +30,9 @@ public class Contact {
     @Column(name = "type")
     private String type;
 
+    @Column(name = "phone")
+    private String phone;
+
     @Column(name = "birthday")
     private Timestamp birthday;
 
@@ -54,6 +57,14 @@ public class Contact {
 
     public String getType() {
         return type;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public void setBirthday(Timestamp birthday) {

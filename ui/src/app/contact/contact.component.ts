@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Contact } from '../model/contact';
 import { ContactService } from '../service/contact.service';
+import { TYPECONTACT } from '../model/type';
 
 @Component({
   selector: 'app-contact',
@@ -18,13 +19,11 @@ export class ContactComponent implements OnInit {
   });
 
   contact: Contact;
+  typeContact = TYPECONTACT;
 
   constructor(private contactService: ContactService) { }
 
   ngOnInit(): void {
-  }
-
-  onContactNameInput() {
   }
 
   onContactSubmit() {

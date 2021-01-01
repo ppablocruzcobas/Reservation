@@ -4,6 +4,7 @@ import { Contact } from '../model/contact';
 import { Reservation } from '../model/reservation';
 import { ContactService } from '../service/contact.service';
 import { ReservationService } from '../service/reservation.service';
+import { TYPECONTACT } from '../model/type';
 
 @Component({
   selector: 'app-reservation',
@@ -24,7 +25,10 @@ export class ReservationComponent implements OnInit {
     description: new FormControl()
   });
 
+  contact: Contact;
   contacts: Contact[];
+  
+  typeContact = TYPECONTACT;
 
   constructor(private reservationService: ReservationService,
               private contactService: ContactService) { }
@@ -35,9 +39,9 @@ export class ReservationComponent implements OnInit {
   }
 
   onContactNameInput(event: any) {
-    let contact = this.contacts.find(x => x.name == event.target.value);
-    if (contact != undefined) {
-      this.formContact.patchValue(contact);
+    this.contact = this.contacts.find(x => x.name == event.target.value);
+    if (this.contact != undefined) {
+      this.formContact.patchValue(this.contact);
     } else {
       this.formContact.setValue(new Contact({name: event.target.value}));
     }
@@ -45,7 +49,9 @@ export class ReservationComponent implements OnInit {
 
   onReservationSubmit() {
     let reservation = new Reservation(this.formReservation.value);
-
+    if (this.contact) {
+      reservation.contact.id = this.contact.id;
+    }
     this.reservationService.createReservation(reservation);
 
     this.reset();
