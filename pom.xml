@@ -75,6 +75,8 @@
   
   <build>
     <plugins>
+
+      <!-- Install node and npm if missing or not indicated versions -->
       <plugin>
         <groupId>com.github.eirslett</groupId>
         <artifactId>frontend-maven-plugin</artifactId>
@@ -95,6 +97,8 @@
         </configuration>
       </plugin>
 
+      <!-- Execute npm install inside Angular project to get -->
+      <!-- node modules installed and then build project -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
@@ -130,6 +134,7 @@
         </executions>
       </plugin>
 
+      <!-- Copy generated Angular files to static folder in Spring resources -->
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
         <version>3.2.0</version>
@@ -144,7 +149,7 @@
               <outputDirectory>src/main/resources/static</outputDirectory>
 			  <resources>
 			    <resource>
-                  <directory>ui/dist/webapp/</directory>
+                  <directory>ui/dist/ui/</directory>
 			    </resource>
 			  </resources>
 			</configuration>
@@ -152,6 +157,7 @@
 		</executions>
 	  </plugin>
 
+      <!-- Finally, serve or package the project -->
   	  <plugin>
   	  	<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-maven-plugin</artifactId>

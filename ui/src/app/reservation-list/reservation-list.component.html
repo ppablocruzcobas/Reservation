@@ -1,20 +1,27 @@
-<div class="container">
-  <table class="table" style="width: 100%;">
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Date</th>
-    </tr>
-    <tr *ngFor="let reservation of reservations">
-      <td>{{reservation.contact.name}}</td>
-      <td>{{reservation.description}}</td>
-      <td>{{reservation.date}}</td>
-    </tr>
-    <tr *ngIf="!reservations">
-      <td colspan="3">Loading... Please wait....</td>
-    </tr>
-    <tr *ngIf="reservations && reservations.length == 0">
-      <td colspan="3">No records found!</td>
-    </tr>
+<div class="mat-elevation-z8">
+  <table mat-table matSort [dataSource]="reservations">
+
+    <!-- Contact Name Column -->
+    <ng-container matColumnDef="contact">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.contact.name}} </td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
 </div>

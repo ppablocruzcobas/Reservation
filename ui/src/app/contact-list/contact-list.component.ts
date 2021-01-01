@@ -1,26 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ContactService } from '../service/contact.service';
 import { Contact } from '../model/contact';
 
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-contact-list',
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.css']
 })
-export class ContactListComponent implements OnInit {
+export class ContactListComponent implements OnInit, AfterViewInit {
 
-  contacts: Contact[];
-  msg: string;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
-  constructor(private contactService: ContactService) { }
+  displayedColumns: string[] = ['name', 'type', 'phone', 'birthday'];
+  contacts: MatTableDataSource<Contact>;
+
+  constructor(private contactService: ContactService) {
+    this.contacts = new MatTableDataSource();
+  }
 
   ngOnInit(): void {
     this.contactService.getAllContacts()
-        .subscribe((data) => this.contacts = data,
-                   (error) => {
-                      this.msg = "Problem with service";
-                   });
+        .subscribe((data) => this.contacts.data = data);
+  }
+
+  ngAfterViewInit() {
+    this.contacts.paginator = this.paginator;
+    this.contacts.sort = this.sort;
   }
 
 }

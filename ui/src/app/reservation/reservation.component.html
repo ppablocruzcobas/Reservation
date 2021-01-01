@@ -1,40 +1,32 @@
-<div class="container">
-  <form [formGroup]="formContact" (ngSubmit)="onReservationSubmit()">
+<form [formGroup]="formContact" (ngSubmit)="onReservationSubmit()">
 
-    <div class="form-group row">
-      <div class="col-sm mt-3">
-        <input class="form-control" type="text" placeholder="Contact Name..." (keyup.enter)="onContactNameInput()"
-          formControlName="name">
-      </div>
+  <mat-form-field appearance="fill">
+    <input matInput type="text" placeholder="Contact Name..." (keyup)="onContactNameInput($event)"
+      formControlName="name" />
+  </mat-form-field>
 
-      <div class="col-sm mt-3">
-        <select class="selectpicker form-control" formControlName="type" title="Contact Type">
-          <option>Contact Type 1</option>
-          <option>Contact Type 2</option>
-          <option>Contact Type 3</option>
-        </select>
-      </div>
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="Contact Type" formControlName="type">
+      <mat-option [value]="">Contact Type 1</mat-option>
+      <mat-option [value]="">Contact Type 2</mat-option>
+      <mat-option [value]="">Contact Type 3</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-      <div class="col-sm mt-3">
-        <input class="form-control" type="text" placeholder="Phone:" formControlName="phone">
-      </div>
+  <mat-form-field appearance="fill">
+    <input matInput type="text" placeholder="Phone:" formControlName="phone" />
+  </mat-form-field>
 
-      <div class="col-sm mt-3">
-        <input class="form-control" type="text" placeholder="Birth Date" formControlName="birthday">
-      </div>
-    </div>
+  <mat-form-field appearance="fill">
+    <input matInput [matDatepicker]="picker" placeholder="Birthday" formControlName="birthday">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
 
-    <div class="form-group row">
-      <div class="col-sm mt-3">
-        <textarea class="form-control" id="description"></textarea>
-      </div>
-    </div>
+  <mat-form-field appearance="fill">
+    <textarea matInput id="description"></textarea>
+  </mat-form-field>
 
-    <div class="form-group row">
-      <div class="col-md col-sm">
-        <button class="btn btn-primary float-right" type="submit">Send</button>
-      </div>
-    </div>
+  <button class="btn btn-primary btn-block float-right" type="submit">Send</button>
 
-  </form>
-</div>
+</form>
