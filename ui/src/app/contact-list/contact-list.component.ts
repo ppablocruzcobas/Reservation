@@ -36,4 +36,8 @@ export class ContactListComponent implements OnInit, AfterViewInit {
     this.contacts.sort = this.sort;
   }
 
+  onDelete(id: string) {
+    this.contactService.deleteContact(id);
+  }
+
 }

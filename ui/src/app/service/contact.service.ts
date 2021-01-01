@@ -37,4 +37,15 @@ export class ContactService {
     return this.http.post<Contact>("/api/contact", contact, options);
   }
 
+  deleteContact(id: string) {
+    let options = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+
+    this.http.delete("/api/contact/" + id, options)
+        .subscribe((error) => {
+                    console.log(error);
+                  });
+  }
+
 }
