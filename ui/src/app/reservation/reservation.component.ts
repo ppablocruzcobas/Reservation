@@ -56,11 +56,11 @@ export class ReservationComponent implements OnInit {
     if (this.contact) {
       reservation.contact.id = this.contact.id;
     }
-    this.reservationService.createReservation(reservation);
-    this.reset();
-  }
-
-  reset() {
+    this.reservationService.createReservation(reservation)
+        .subscribe((data) => this.contacts.push(data),
+                   (error) => {
+                     console.log(error);
+                   }),
     this.formReservation.reset();
   }
 

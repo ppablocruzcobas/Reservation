@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Contact } from '../model/contact';
 import { Reservation } from '../model/reservation';
 
 @Injectable({
@@ -14,14 +15,10 @@ export class ReservationService {
     return this.http.get<Reservation[]>("/api/reservations");
   }
 
-  createReservation(reservation: Reservation) {
+  createReservation(reservation: Reservation): Observable<Contact> {
     let options = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-
-    this.http.post<string>("/api/reservation", reservation, options)
-        .subscribe((error) => {
-          console.log(error);
-        });
+    return this.http.post<Contact>("/api/reservation", reservation, options);
   }
 }
