@@ -18,7 +18,6 @@ export class ContactComponent implements OnInit {
   });
 
   contact: Contact;
-  msg: string;
 
   constructor(private contactService: ContactService) { }
 
@@ -31,10 +30,7 @@ export class ContactComponent implements OnInit {
   onContactSubmit() {
     let contact = new Contact(this.formContact.value);
     this.contactService.createContact(contact)
-        .subscribe((data) => this.contact = data,
-                   (error) => {
-                      this.msg = "Problem with service";
-                   });
+        .subscribe((data) => this.contact = data);
     this.formContact.reset();
   }
 }

@@ -2,9 +2,9 @@ import {Contact} from './contact';
 
 export class Reservation {
   id: string;
-  description: string;
+  description: string = '';
   date: string;
-  contact: Contact;
+  contact: Contact = null;
 
   public constructor(init?: Partial<Reservation>) {
         Object.assign(this, init);

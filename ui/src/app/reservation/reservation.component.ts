@@ -19,6 +19,11 @@ export class ReservationComponent implements OnInit {
     birthday: new FormControl()
   });
 
+  formReservation = new FormGroup({
+    contact: this.formContact,
+    description: new FormControl()
+  });
+
   contacts: Contact[];
 
   constructor(private reservationService: ReservationService,
@@ -31,17 +36,15 @@ export class ReservationComponent implements OnInit {
 
   onContactNameInput(event: any) {
     let contact = this.contacts.find(x => x.name == event.target.value);
-    if (contact.id) {
+    if (contact != undefined) {
       this.formContact.patchValue(contact);
     } else {
-      this.formContact.patchValue(new Contact({name: event.target.value}));
+      this.formContact.setValue(new Contact({name: event.target.value}));
     }
   }
 
   onReservationSubmit() {
-    let contact = new Contact(this.formContact.value);
-    let reservation = new Reservation(contact);
-    reservation.description = "";
+    let reservation = new Reservation(this.formReservation.value);
 
     this.reservationService.createReservation(reservation);
 
@@ -49,7 +52,7 @@ export class ReservationComponent implements OnInit {
   }
 
   reset() {
-    this.formContact.reset();
+    this.formReservation.reset();
   }
 
 }
