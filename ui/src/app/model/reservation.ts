@@ -1,9 +1,9 @@
-import {Contact} from './contact';
+import { Contact } from './contact';
 
 export class Reservation {
-  id: string;
-  description: string = '';
-  date: string;
+  id: number;
+  description: string = null;
+  date: Date = new Date();
   contact: Contact = null;
 
   public constructor(init?: Partial<Reservation>) {

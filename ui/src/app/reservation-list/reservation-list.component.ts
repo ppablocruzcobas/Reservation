@@ -25,7 +25,10 @@ export class ReservationListComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.reservationService.getAllReservations()
-        .subscribe((data) => this.reservations.data = data);
+        .subscribe((data) => this.reservations.data = data,
+                   (error) => {
+                     console.log(error);
+                   });
   }
 
   ngAfterViewInit() {

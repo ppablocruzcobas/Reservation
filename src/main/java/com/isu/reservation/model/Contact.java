@@ -1,7 +1,5 @@
 package com.isu.reservation.model;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;

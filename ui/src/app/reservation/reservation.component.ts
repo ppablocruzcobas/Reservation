@@ -35,7 +35,11 @@ export class ReservationComponent implements OnInit {
 
   ngOnInit(): void {
     this.contactService.getAllContacts()
-        .subscribe((data) => this.contacts = data);
+        .subscribe((data) => this.contacts = data,
+                   (error) => {
+                     console.log(error);
+                   });
+
   }
 
   onContactNameInput(event: any) {
@@ -53,7 +57,6 @@ export class ReservationComponent implements OnInit {
       reservation.contact.id = this.contact.id;
     }
     this.reservationService.createReservation(reservation);
-
     this.reset();
   }
 

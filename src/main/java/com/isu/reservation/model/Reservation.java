@@ -1,6 +1,5 @@
 package com.isu.reservation.model;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;

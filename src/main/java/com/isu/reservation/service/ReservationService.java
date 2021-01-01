@@ -31,11 +31,11 @@ public class ReservationService {
     }
 
     @Transactional
-    public void save(Reservation reservation) {
+    public Reservation save(Reservation reservation) {
         if (reservation.getContact().getId() == null) {
             Contact contact = contactRepository.save(reservation.getContact());
             reservation.setContact(contact);
         }
-        reservationRepository.save(reservation);
+        return reservationRepository.save(reservation);
     }
 }

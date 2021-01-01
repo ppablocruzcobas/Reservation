@@ -36,6 +36,7 @@ public class ContactService {
         contact.setName(newContact.getName());
         contact.setType(newContact.getType());
         contact.setBirthday(newContact.getBirthday());
+
         save(contact);
     }
 

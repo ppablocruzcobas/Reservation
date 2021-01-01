@@ -29,7 +29,10 @@ export class ContactComponent implements OnInit {
   onContactSubmit() {
     let contact = new Contact(this.formContact.value);
     this.contactService.createContact(contact)
-        .subscribe((data) => this.contact = data);
+        .subscribe((data) => this.contact = data,
+                   (error) => {
+                     console.log(error);
+                   });
     this.formContact.reset();
   }
 }

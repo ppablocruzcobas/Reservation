@@ -19,6 +19,9 @@ export class ReservationService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
 
-    this.http.post("/api/reservation", reservation, options);
+    this.http.post<string>("/api/reservation", reservation, options)
+        .subscribe((error) => {
+          console.log(error);
+        });
   }
 }
