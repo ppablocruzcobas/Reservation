@@ -45,10 +45,21 @@ public class ContactController {
         return ResponseEntity.ok("Contact Created.");
     }
 
-    @PutMapping("/contact/{id}")
-    public ResponseEntity<String> editContact(@PathVariable("id") Long id, @RequestBody Contact contact) {
+    @GetMapping("/contact/{id}")
+    public ResponseEntity<?> findContact(@PathVariable("id") Long id) {
+        Contact contact = new Contact();
         try {
-            contactService.update(id, contact);
+            contact = contactService.find(id);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.ok(contact);
+    }
+
+    @PutMapping("/contact")
+    public ResponseEntity<String> editContact(@RequestBody Contact contact) {
+        try {
+            contactService.update(contact);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

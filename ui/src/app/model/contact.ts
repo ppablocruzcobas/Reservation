@@ -1,9 +1,9 @@
 export class Contact {
-  id: number;
-  name: string = null;
-  type: string = null;
-  phone: string = null;
-  birthday: Date = null;
+  id:       string;
+  name:     string = null;
+  type:     string = null;
+  phone:    string = null;
+  birthday: string = null;
 
   public constructor(init?: Partial<Contact>) {
         Object.assign(this, init);

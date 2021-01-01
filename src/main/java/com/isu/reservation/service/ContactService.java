@@ -2,6 +2,7 @@ package com.isu.reservation.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.isu.reservation.model.Contact;
 import com.isu.reservation.repository.ContactRepository;
@@ -25,18 +26,17 @@ public class ContactService {
         return contacts;
     }
 
+    public Contact find(Long id) {
+        return contactRepository.findById(id).get();
+    }
+
     @Transactional
     public Contact save(Contact contact) {
         return contactRepository.save(contact);
     }
 
     @Transactional
-    public void update(Long id, Contact newContact) {
-        Contact contact = contactRepository.findById(id).get();
-        contact.setName(newContact.getName());
-        contact.setType(newContact.getType());
-        contact.setBirthday(newContact.getBirthday());
-
+    public void update(Contact contact) {
         save(contact);
     }
 

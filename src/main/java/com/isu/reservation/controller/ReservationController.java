@@ -25,7 +25,7 @@ public class ReservationController {
     public ResponseEntity<?> getAllReservations() {
         List<Reservation> reservations = new ArrayList<Reservation>();
         try {
-            reservationService.reservations();
+            reservations = reservationService.reservations();
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

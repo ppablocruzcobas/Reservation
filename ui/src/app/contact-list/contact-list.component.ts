@@ -16,7 +16,7 @@ export class ContactListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
-  displayedColumns: string[] = ['name', 'type', 'phone', 'birthday'];
+  displayedColumns: string[] = ['name', 'type', 'phone', 'birthday', 'actions'];
   contacts: MatTableDataSource<Contact>;
 
   constructor(private contactService: ContactService) {

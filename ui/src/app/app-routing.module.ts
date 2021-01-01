@@ -9,8 +9,9 @@ const routes: Routes = [
   { path: '', redirectTo: '/reservations', pathMatch: 'full' },
   { path: 'reservation', component: ReservationComponent },
   { path: 'reservations', component: ReservationListComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'contacts', component: ContactListComponent }
+  { path: 'contact/:id', component: ContactComponent },
+  { path: 'contacts', component: ContactListComponent },
+  { path: '**', redirectTo: '/reservations'}
 ];
 
 @NgModule({

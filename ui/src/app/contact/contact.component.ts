@@ -1,3 +1,4 @@
+import { ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Contact } from '../model/contact';
@@ -21,18 +22,35 @@ export class ContactComponent implements OnInit {
   contact: Contact;
   typeContact = TYPECONTACT;
 
-  constructor(private contactService: ContactService) { }
+  constructor(private route: ActivatedRoute,
+              private contactService: ContactService) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      this.contactService.findContactById(params['id'])
+          .subscribe((data) => {
+                       this.contact = data;
+                       this.formContact.patchValue(this.contact)
+                     },
+                     (error) => {
+                       console.log(error);
+                     });
+    });
   }
 
   onContactSubmit() {
     let contact = new Contact(this.formContact.value);
-    this.contactService.createContact(contact)
-        .subscribe((data) => this.contact = data,
-                   (error) => {
-                     console.log(error);
-                   });
+    if (this.contact) {
+      contact.id = this.contact.id;
+      this.contactService.updateContact(contact);
+    } else {
+      this.contactService.createContact(contact)
+          .subscribe((data) => this.contact = data,
+                     (error) => {
+                       console.log(error);
+                     });
+    }
     this.formContact.reset();
   }
+
 }
