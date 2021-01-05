@@ -72,22 +72,23 @@
       </div>
 
     </div>
+  </div>
 
-    <!-- Insert ContactListComponent here, hidden at first -->
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">
-      <div fxLayout="column">
-        <app-contact-list *ngIf="contactListVisible"></app-contact-list>
-      </div>
+  <!-- <app-contact></app-contact> -->
+
+  <!-- Insert ContactListComponent here, hidden at first -->
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">
+    <div fxLayout="column">
+      <app-contact-list *ngIf="contactListVisible"></app-contact-list>
     </div>
+  </div>
 
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">
-      <div fxLayout="column">
-        <mat-form-field appearance="fill">
-          <textarea matInput id="description" formControlName="description"></textarea>
-        </mat-form-field>
-      </div>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">
+    <div fxLayout="column">
+      <mat-form-field appearance="fill">
+        <textarea matInput id="description" formControlName="description"></textarea>
+      </mat-form-field>
     </div>
-
   </div>
 
   <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">

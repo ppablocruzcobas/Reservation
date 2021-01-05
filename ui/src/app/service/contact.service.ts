@@ -1,14 +1,14 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Contact } from '../model/contact';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {Contact} from '../model/contact';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAllContacts(): Observable<Contact[]> {
     return this.http.get<Contact[]>("/api/contacts");
@@ -20,32 +20,29 @@ export class ContactService {
 
   updateContact(contact: Contact) {
     let options = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
 
     this.http.put("/api/contact", contact, options)
-        .subscribe((error) => {
-                    console.log(error);
-                  });
+      .subscribe((error) => {
+        console.log(error);
+      });
   }
 
   createContact(contact: Contact): Observable<Contact> {
     let options = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
 
     return this.http.post<Contact>("/api/contact", contact, options);
   }
 
-  deleteContact(id: string) {
+  deleteContact(id: string): Observable<any> {
     let options = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
 
-    this.http.delete("/api/contact/" + id, options)
-        .subscribe((error) => {
-                    console.log(error);
-                  });
+    return this.http.delete("/api/contact/" + id, options);
   }
 
 }

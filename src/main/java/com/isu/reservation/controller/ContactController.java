@@ -57,22 +57,22 @@ public class ContactController {
     }
 
     @PutMapping("/contact")
-    public ResponseEntity<String> editContact(@RequestBody Contact contact) {
+    public ResponseEntity<?> editContact(@RequestBody Contact contact) {
         try {
             contactService.update(contact);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-        return ResponseEntity.ok("Contact Updated.");
+        return ResponseEntity.ok("{}");
     }
 
     @DeleteMapping("/contact/{id}")
-    public ResponseEntity<String> delete(@PathVariable("id") Long id) {
+    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
         try {
             contactService.delete(id);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-        return ResponseEntity.ok("Contact Deleted.");
+        return ResponseEntity.ok("{}");
     }
 }

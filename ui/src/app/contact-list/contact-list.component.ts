@@ -37,7 +37,15 @@ export class ContactListComponent implements OnInit, AfterViewInit {
   }
 
   onDelete(id: string) {
-    this.contactService.deleteContact(id);
+    this.contactService.deleteContact(id)
+      .subscribe((data) => {
+        let index = this.contacts.data.findIndex(x => x.id == id);
+        this.contacts.data.splice(index, 1);
+        this.contacts._updateChangeSubscription();
+      },
+        (error) => {
+          console.log(error);
+        });
   }
 
 }
