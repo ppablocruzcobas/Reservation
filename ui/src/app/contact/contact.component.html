@@ -1,28 +1,44 @@
 <form [formGroup]="formContact" (ngSubmit)="onContactSubmit()">
 
-  <mat-form-field appearance="fill">
-    <input matInput type="text" placeholder="Contact Name..." formControlName="name" />
-    <mat-icon matPrefix>people</mat-icon>
-  </mat-form-field>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly">
 
-  <mat-form-field floatlabel="never" appearance="fill">
-    <mat-select placeholder="Contact Type" formControlName="type">
-      <mat-option *ngFor="let ctype of typeContact" [value]="ctype.value">{{ctype.name}}</mat-option>
-    </mat-select>
-    <mat-icon matPrefix>public</mat-icon>
-  </mat-form-field>
+    <div fxFlex="20" fxLayout="column">
+      <mat-form-field appearance="fill">
+        <input matInput type="text" placeholder="Contact Name..." formControlName="name" />
+        <mat-icon matPrefix>people</mat-icon>
+      </mat-form-field>
+    </div>
 
-  <mat-form-field appearance="fill">
-    <input matInput type="number" placeholder="Phone:" formControlName="phone" />
-    <mat-icon matPrefix>phone</mat-icon>
-  </mat-form-field>
+    <div fxFlex="20" fxLayout="column">
+      <mat-form-field floatlabel="never" appearance="fill">
+        <mat-select placeholder="Contact Type" formControlName="type">
+          <mat-option *ngFor="let ctype of typeContact" [value]="ctype.value">{{ctype.name}}</mat-option>
+        </mat-select>
+        <mat-icon matPrefix>public</mat-icon>
+      </mat-form-field>
+    </div>
 
-  <mat-form-field appearance="fill">
-    <input matInput [matDatepicker]="picker" placeholder="Birthday" formControlName="birthday">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+    <div fxFlex="20" fxLayout="column">
+      <mat-form-field appearance="fill">
+        <input matInput type="string" placeholder="Phone:" formControlName="phone" />
+        <mat-icon matPrefix>phone</mat-icon>
+      </mat-form-field>
+    </div>
 
-  <button mat-raised-button color="primary" type="submit">Send</button>
+    <div fxFlex="20" fxLayout="column">
+      <mat-form-field appearance="fill">
+        <input matInput [matDatepicker]="picker" placeholder="Birthday" formControlName="birthday">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
+    <div fxLayout="column">
+      <button mat-raised-button color="primary" type="submit">Send</button>
+    </div>
+  </div>
 
 </form>
