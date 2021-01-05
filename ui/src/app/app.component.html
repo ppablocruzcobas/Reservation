@@ -1,3 +1,20 @@
-<mat-toolbar></mat-toolbar>
+<mat-toolbar fxShow.gt-xs="true" fxShow="false"
+  style="background-image: url('../assets/toolbar-background.jpg'); background-size: cover; height: 100px">
+
+  <div fxLayout="row">
+    <div fxLayout="column" fxLayoutAlign="center">
+      <h1 style="color: white; font-size:64px;"><strong>ISU</strong>Corp</h1>
+    </div>
+    <div fxLayout="column">
+      <div fxLayout="row">
+        <h6 style="color: white;">World Class</h6>
+      </div>
+      <div fxLayout="row">
+        <h6 style="color: white;">Software Development</h6>
+      </div>
+    </div>
+  </div>
+
+</mat-toolbar>
 
 <router-outlet></router-outlet>

@@ -1,9 +1,9 @@
-import { ActivatedRoute, Params } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { Contact } from '../model/contact';
-import { ContactService } from '../service/contact.service';
-import { TYPECONTACT } from '../model/type';
+import {ActivatedRoute, Params} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormControl} from '@angular/forms';
+import {Contact} from '../model/contact';
+import {ContactService} from '../service/contact.service';
+import {TYPECONTACT} from '../model/type';
 
 @Component({
   selector: 'app-contact',
@@ -23,18 +23,18 @@ export class ContactComponent implements OnInit {
   typeContact = TYPECONTACT;
 
   constructor(private route: ActivatedRoute,
-              private contactService: ContactService) { }
+    private contactService: ContactService) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.contactService.findContactById(params['id'])
-          .subscribe((data) => {
-                       this.contact = data;
-                       this.formContact.patchValue(this.contact)
-                     },
-                     (error) => {
-                       console.log(error);
-                     });
+        .subscribe((data) => {
+          this.contact = data;
+          this.formContact.patchValue(this.contact)
+        },
+          (error) => {
+            console.log(error);
+          });
     });
   }
 
@@ -45,10 +45,10 @@ export class ContactComponent implements OnInit {
       this.contactService.updateContact(contact);
     } else {
       this.contactService.createContact(contact)
-          .subscribe((data) => this.contact = data,
-                     (error) => {
-                       console.log(error);
-                     });
+        .subscribe((data) => this.contact = data,
+          (error) => {
+            console.log(error);
+          });
     }
     this.formContact.reset();
   }

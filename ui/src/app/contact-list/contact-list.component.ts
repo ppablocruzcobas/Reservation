@@ -1,10 +1,10 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { ContactService } from '../service/contact.service';
-import { Contact } from '../model/contact';
+import {Component, OnInit, AfterViewInit, ViewChild} from '@angular/core';
+import {ContactService} from '../service/contact.service';
+import {Contact} from '../model/contact';
 
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
 
 @Component({
   selector: 'app-contact-list',
@@ -25,10 +25,10 @@ export class ContactListComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.contactService.getAllContacts()
-        .subscribe((data) => this.contacts.data = data,
-                   (error) => {
-                     console.log(error);
-                   });
+      .subscribe((data) => this.contacts.data = data,
+        (error) => {
+          console.log(error);
+        });
   }
 
   ngAfterViewInit() {

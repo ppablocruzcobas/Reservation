@@ -1,3 +1,32 @@
+<mat-toolbar fxShow.gt-xs="false" fxShow="true"
+  style="background-image: url('../assets/toolbar-background.jpg'); background-size: cover;">
+  <div fxLayout="row" fxFlexFill>
+    <div fxFlex fxLayout="column" fxLayoutAlign="center begin">
+      <h6 style="color: white; font-size: 24px;"><strong>ISU</strong>Corp</h6>
+    </div>
+
+    <div fxFlex fxLayout="column" fxLayoutAlign="center end">
+      <a href="/reservations" style="color: white; font-size: 16px;">Reservations List &#x25B6;</a>
+    </div>
+  </div>
+</mat-toolbar>
+
+<mat-toolbar fxShow.gt-xs="true" fxShow="false" style="background-color: #E2E3E4">
+  <div fxLayout="row" fxFlexFill>
+    <div fxFlex=20 fxLayout="column" fxLayoutAlign="center begin">
+      <h6 style="color: #C26665; font-size: 24px;">Create Reservation</h6>
+    </div>
+
+    <div fxFlex=60 fxLayout="column" fxLayoutAlign="center center">
+    </div>
+
+    <div fxFlex=20 fxLayout="column" fxLayoutAlign="center end">
+      <button mat-raised-button color="primary" type="button" onclick="location.href='/reservations'">Reservations
+        List</button>
+    </div>
+  </div>
+</mat-toolbar>
+
 <form [formGroup]="formReservation" (ngSubmit)="onReservationSubmit()">
 
   <div formGroupName="contact">

@@ -1,3 +1,32 @@
+<mat-toolbar fxShow.gt-xs="false" fxShow="true"
+  style="background-image: url('../assets/toolbar-background.jpg'); background-size: cover;">
+  <div fxLayout="row" fxFlexFill>
+    <div fxFlex fxLayout="column" fxLayoutAlign="center begin">
+      <h6 style="color: white; font-size: 24px;"><strong>ISU</strong>Corp</h6>
+    </div>
+
+    <div fxFlex fxLayout="column" fxLayoutAlign="center end">
+      <a href="/reservation" style="color: white; font-size: 16px;">&#x25C0; Create Reservation</a>
+    </div>
+  </div>
+</mat-toolbar>
+
+<mat-toolbar fxShow.gt-xs="true" fxShow="false" style="background-color: #E2E3E4">
+  <div fxLayout="row" fxFlexFill>
+    <div fxFlex=20 fxLayout="column" fxLayoutAlign="start start">
+      <h6 style="color: #C26665; font-size: 24px;">Reservations List</h6>
+    </div>
+
+    <div fxWrap="wrap" fxFlex=60 fxLayout="column" fxLayoutAlign="start center">
+    </div>
+
+    <div fxFlex=20 fxLayout="column" fxLayoutAlign="center end">
+      <button mat-raised-button color="primary" type="button" onclick="location.href='/reservation'">Create
+        Reservation</button>
+    </div>
+  </div>
+</mat-toolbar>
+
 <div class="mat-elevation-z8">
   <table mat-table matSort [dataSource]="reservations">
 
