@@ -8,7 +8,7 @@ public class ViewController {
     /*
      * Redirect these routes to Angular application to manage the views.
      */
-    @RequestMapping({ "/reservations", "/reservation", "/contacts", "/contact/{id:\\w+}" })
+    @RequestMapping({ "/reservations", "/reservation", "/contact/{id:\\w+}" })
     public String index() {
         return "forward:/index.html";
     }

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { Contact } from '../model/contact';
-import { Reservation } from '../model/reservation';
-import { ContactService } from '../service/contact.service';
-import { ReservationService } from '../service/reservation.service';
-import { TYPECONTACT } from '../model/type';
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormControl} from '@angular/forms';
+import {Contact} from '../model/contact';
+import {Reservation} from '../model/reservation';
+import {ContactService} from '../service/contact.service';
+import {ReservationService} from '../service/reservation.service';
+import {TYPECONTACT} from '../model/type';
 
 @Component({
   selector: 'app-reservation',
@@ -27,18 +27,20 @@ export class ReservationComponent implements OnInit {
 
   contact: Contact;
   contacts: Contact[];
-  
+
   typeContact = TYPECONTACT;
 
+  contactListVisible = false;
+
   constructor(private reservationService: ReservationService,
-              private contactService: ContactService) { }
+    private contactService: ContactService) {}
 
   ngOnInit(): void {
     this.contactService.getAllContacts()
-        .subscribe((data) => this.contacts = data,
-                   (error) => {
-                     console.log(error);
-                   });
+      .subscribe((data) => this.contacts = data,
+        (error) => {
+          console.log(error);
+        });
 
   }
 
@@ -51,17 +53,21 @@ export class ReservationComponent implements OnInit {
     }
   }
 
+  onShowHideContactList() {
+    this.contactListVisible = !this.contactListVisible;
+  }
+
   onReservationSubmit() {
     let reservation = new Reservation(this.formReservation.value);
     if (this.contact) {
       reservation.contact.id = this.contact.id;
     }
     this.reservationService.createReservation(reservation)
-        .subscribe((data) => this.contacts.push(data),
-                   (error) => {
-                     console.log(error);
-                   }),
-    this.formReservation.reset();
+      .subscribe((data) => this.contacts.push(data),
+        (error) => {
+          console.log(error);
+        }),
+      this.formReservation.reset();
   }
 
 }
