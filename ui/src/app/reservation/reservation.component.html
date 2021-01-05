@@ -27,42 +27,73 @@
   </div>
 </mat-toolbar>
 
+<div fxLayout="row" fxLayoutAlign="end">
+  <div fxLayout="column">
+    <button mat-raised-button color="primary" type="button" (click)="onShowHideContactList()">List</button>
+  </div>
+  <div fxLayout="column">
+    <button mat-raised-button color="primary" type="button" onclick="location.href='/contact/0'">Create</button>
+  </div>
+</div>
+
 <form [formGroup]="formReservation" (ngSubmit)="onReservationSubmit()">
 
   <div formGroupName="contact">
 
-    <button mat-raised-button color="primary" type="button" (click)="onShowHideContactList()">List</button>
-    <button mat-raised-button color="primary" type="button" onclick="location.href='/comtact/0'">Create</button>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly">
 
-    <mat-form-field appearance="fill">
-      <input matInput type="text" placeholder="Contact Name..." (keyup)="onContactNameInput($event)"
-        formControlName="name" />
-    </mat-form-field>
+      <div fxFlex="20" fxLayout="column">
+        <mat-form-field appearance="fill">
+          <input matInput type="text" placeholder="Contact Name..." (keyup)="onContactNameInput($event)"
+            formControlName="name" />
+        </mat-form-field>
+      </div>
 
-    <mat-form-field appearance="fill">
-      <mat-select placeholder="Contact Type" formControlName="type">
-        <mat-option *ngFor="let ctype of typeContact" [value]="ctype.value">{{ctype.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
+      <div fxFlex="20" fxLayout="column">
+        <mat-form-field appearance="fill">
+          <mat-select placeholder="Contact Type" formControlName="type">
+            <mat-option *ngFor="let ctype of typeContact" [value]="ctype.value">{{ctype.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-    <mat-form-field appearance="fill">
-      <input matInput type="text" placeholder="Phone:" formControlName="phone" />
-    </mat-form-field>
+      <div fxFlex="20" fxLayout="column">
+        <mat-form-field appearance="fill">
+          <input matInput type="text" placeholder="Phone:" formControlName="phone" />
+        </mat-form-field>
+      </div>
 
-    <mat-form-field appearance="fill">
-      <input matInput [matDatepicker]="picker" placeholder="Birthday" formControlName="birthday">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+      <div fxFlex="20" fxLayout="column">
+        <mat-form-field appearance="fill">
+          <input matInput [matDatepicker]="picker" placeholder="Birthday" formControlName="birthday">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+    </div>
+
+    <!-- Insert ContactListComponent here, hidden at first -->
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">
+      <div fxLayout="column">
+        <app-contact-list *ngIf="contactListVisible"></app-contact-list>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">
+      <div fxLayout="column">
+        <mat-form-field appearance="fill">
+          <textarea matInput id="description" formControlName="description"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Insert ContactListComponent here, hidden at first -->
-  <app-contact-list *ngIf="contactListVisible"></app-contact-list>
-
-  <mat-form-field appearance="fill">
-    <textarea matInput id="description" formControlName="description"></textarea>
-  </mat-form-field>
-
-  <button mat-raised-button color="primary" type="submit">Send</button>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
+    <div fxLayout="column">
+      <button mat-raised-button color="primary" type="submit">Send</button>
+    </div>
+  </div>
 
 </form>
