@@ -23,19 +23,19 @@ public class Reservation {
     private Long id;
 
     @Lob
-    @Column(name = "description", length = 10000)
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "date")
     private Timestamp date;
 
-    @Column(name = "favorite")
-    private Integer favorite;
+    @Column(name = "favorite", columnDefinition = "BOOLEAN")
+    private Boolean favorite;
 
     @Column(name = "stars")
-    private Integer stars;
+    private Float stars;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "contact_id", referencedColumnName = "id")
     private Contact contact;
 
@@ -67,19 +67,19 @@ public class Reservation {
         return contact;
     }
 
-    public void setFavorite(Integer favorite) {
+    public void setFavorite(Boolean favorite) {
         this.favorite = favorite;
     }
 
-    public Integer getFavorite() {
+    public Boolean getFavorite() {
         return favorite;
     }
 
-    public void setStars(Integer stars) {
+    public void setStars(Float stars) {
         this.stars = stars;
     }
 
-    public Integer getStars() {
+    public Float getStars() {
         return stars;
     }
 }

@@ -54,11 +54,12 @@
               Ranking
             </div>
             <div fxLayout="row">
-              {{ reservation.stars }}
+              <ngx-stars [initialStars]="reservation.stars" (ratingOutput)="onRatingClick($event, reservation)">
+              </ngx-stars>
             </div>
           </div>
 
-          <div fxFlex="10" fxLayout="column" fxLayoutAlign="center end">
+          <div fxFlex="10" fxLayout="column" fxLayoutAlign="center end" (click)="onFavoriteClick(reservation)">
             <div fxLayout="row">
               <div fxLayout="column" fxShow.gt-xs="true" fxShow="false">
                 <label [ngStyle]="{'color': reservation.favorite ? 'grey': 'black'}">Add Favorites</label>

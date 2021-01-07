@@ -20,6 +20,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 
 import {QuillModule} from 'ngx-quill'
 
+import {NgxStarsModule} from 'ngx-stars';
+
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -59,7 +61,8 @@ import {FormSubmitComponent} from './form-submit/form-submit.component';
     MatIconModule,
     MatListModule,
     FlexLayoutModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    NgxStarsModule
   ],
   providers: [
     MatDatepickerModule,
