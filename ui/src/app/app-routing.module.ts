@@ -8,6 +8,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/reservations', pathMatch: 'full'},
   {path: 'reservation', component: ReservationComponent},
   {path: 'reservations', component: ReservationListComponent},
+  {path: 'contact', component: ContactComponent},
   {path: 'contact/:id', component: ContactComponent},
   {path: '**', redirectTo: '/reservations'}
 ];

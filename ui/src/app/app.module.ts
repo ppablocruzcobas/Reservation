@@ -8,7 +8,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {MatNativeDateModule} from '@angular/material/core';
+import {MatNativeDateModule, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -17,6 +17,8 @@ import {MatIconModule} from '@angular/material/icon';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
 
+import {QuillModule} from 'ngx-quill'
+
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -24,6 +26,8 @@ import {ContactComponent} from './contact/contact.component';
 import {ContactListComponent} from './contact-list/contact-list.component';
 import {ReservationComponent} from './reservation/reservation.component';
 import {ReservationListComponent} from './reservation-list/reservation-list.component';
+import {FormContactComponent} from './form-contact/form-contact.component';
+import {FormSubmitComponent} from './form-submit/form-submit.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,9 @@ import {ReservationListComponent} from './reservation-list/reservation-list.comp
     ContactComponent,
     ContactListComponent,
     ReservationComponent,
-    ReservationListComponent
+    ReservationListComponent,
+    FormContactComponent,
+    FormSubmitComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,9 +56,13 @@ import {ReservationListComponent} from './reservation-list/reservation-list.comp
     MatPaginatorModule,
     MatButtonModule,
     MatIconModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    QuillModule.forRoot()
   ],
-  providers: [MatDatepickerModule],
+  providers: [
+    MatDatepickerModule,
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

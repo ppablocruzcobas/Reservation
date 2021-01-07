@@ -29,72 +29,32 @@
 
 <div fxLayout="row" fxLayoutAlign="end">
   <div fxLayout="column">
-    <button mat-raised-button color="primary" type="button" (click)="onShowHideContactList()">List</button>
+    <button mat-raised-button [disabled]="contactListVisible" color="primary" type="button"
+      (click)="onShowContactList()">List</button>
   </div>
   <div fxLayout="column">
-    <button mat-raised-button color="primary" type="button" onclick="location.href='/contact/0'">Create</button>
+    <button mat-raised-button color="primary" type="button" onclick="location.href='/contact'">Create</button>
   </div>
 </div>
 
 <form [formGroup]="formReservation" (ngSubmit)="onReservationSubmit()">
 
-  <div formGroupName="contact">
-
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-evenly">
-
-      <div fxFlex="20" fxLayout="column">
-        <mat-form-field appearance="fill">
-          <input matInput type="text" placeholder="Contact Name..." (keyup)="onContactNameInput($event)"
-            formControlName="name" />
-        </mat-form-field>
-      </div>
-
-      <div fxFlex="20" fxLayout="column">
-        <mat-form-field appearance="fill">
-          <mat-select placeholder="Contact Type" formControlName="type">
-            <mat-option *ngFor="let ctype of typeContact" [value]="ctype.value">{{ctype.name}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-
-      <div fxFlex="20" fxLayout="column">
-        <mat-form-field appearance="fill">
-          <input matInput type="text" placeholder="Phone:" formControlName="phone" />
-        </mat-form-field>
-      </div>
-
-      <div fxFlex="20" fxLayout="column">
-        <mat-form-field appearance="fill">
-          <input matInput [matDatepicker]="picker" placeholder="Birthday" formControlName="birthday">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- <app-contact></app-contact> -->
+  <!-- Insert ContactComponent here, without Submit button -->
+  <app-form-contact [formContact]="formContact"></app-form-contact>
 
   <!-- Insert ContactListComponent here, hidden at first -->
   <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">
-    <div fxLayout="column">
+    <div fxFlex="80" fxLayout="column">
       <app-contact-list *ngIf="contactListVisible"></app-contact-list>
     </div>
   </div>
 
   <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">
-    <div fxLayout="column">
-      <mat-form-field appearance="fill">
-        <textarea matInput id="description" formControlName="description"></textarea>
-      </mat-form-field>
+    <div fxFlex="80" fxLayout="column">
+      <quill-editor matInput [styles]="{height: '200px'}" formControlName="description"></quill-editor>
     </div>
   </div>
 
-  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end">
-    <div fxLayout="column">
-      <button mat-raised-button color="primary" type="submit">Send</button>
-    </div>
-  </div>
+  <app-form-submit></app-form-submit>
 
 </form>

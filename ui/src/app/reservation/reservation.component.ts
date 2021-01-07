@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormControl} from '@angular/forms';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {Contact} from '../model/contact';
 import {Reservation} from '../model/reservation';
 import {ContactService} from '../service/contact.service';
@@ -14,10 +14,10 @@ import {TYPECONTACT} from '../model/type';
 export class ReservationComponent implements OnInit {
 
   formContact = new FormGroup({
-    name: new FormControl(),
-    type: new FormControl(),
-    phone: new FormControl(),
-    birthday: new FormControl()
+    name: new FormControl('', Validators.required),
+    type: new FormControl('', Validators.required),
+    phone: new FormControl('', Validators.required),
+    birthday: new FormControl('', Validators.required)
   });
 
   formReservation = new FormGroup({
@@ -41,33 +41,41 @@ export class ReservationComponent implements OnInit {
         (error) => {
           console.log(error);
         });
-
+    this.formContact.get('name').valueChanges
+      .subscribe((value) => {
+        this.onContactNameInput(value);
+      });
   }
 
-  onContactNameInput(event: any) {
-    this.contact = this.contacts.find(x => x.name == event.target.value);
+  onContactNameInput(name: string) {
+    this.contact = this.contacts.find(x => x.name == name);
     if (this.contact != undefined) {
-      this.formContact.patchValue(this.contact);
-    } else {
-      this.formContact.setValue(new Contact({name: event.target.value}));
+      this.formContact.get('type').setValue(this.contact.type);
+      this.formContact.get('phone').setValue(this.contact.phone);
+      this.formContact.get('birthday').setValue(this.contact.birthday);
     }
   }
 
-  onShowHideContactList() {
+  onShowContactList() {
     this.contactListVisible = !this.contactListVisible;
   }
 
   onReservationSubmit() {
-    let reservation = new Reservation(this.formReservation.value);
-    if (this.contact) {
-      reservation.contact.id = this.contact.id;
+    console.log(this.formReservation.get('description').value);
+    if (this.formContact.valid) {
+      let reservation = new Reservation(this.formReservation.value);
+      if (this.contact) {
+        reservation.contact.id = this.contact.id;
+      }
+      this.reservationService.createReservation(reservation)
+        .subscribe((data) => {
+          this.contacts.push(data);
+          this.formReservation.reset();
+        },
+          (error) => {
+            console.log(error);
+          });
     }
-    this.reservationService.createReservation(reservation)
-      .subscribe((data) => this.contacts.push(data),
-        (error) => {
-          console.log(error);
-        }),
-      this.formReservation.reset();
   }
 
 }
