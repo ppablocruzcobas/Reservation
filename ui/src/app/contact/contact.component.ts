@@ -24,30 +24,36 @@ export class ContactComponent implements OnInit {
     private contactService: ContactService) {}
 
   ngOnInit(): void {
-    if (this.route.params['id']) {
-      this.route.params.subscribe((params: Params) => {
+    this.route.params.subscribe((params: Params) => {
+      if (params['id'] != undefined) {
         this.contactService.findContactById(params['id'])
           .subscribe((data) => {
             this.contact = data;
-            this.formContact.patchValue(this.contact)
+            this.formContact.patchValue(this.contact);
           },
             (error) => {
               console.log(error);
             });
-      });
-    }
+      }
+    });
   }
 
   onContactSubmit() {
     if (this.formContact.valid) {
       let contact = new Contact(this.formContact.value);
+
       if (this.contact) {
         contact.id = this.contact.id;
-        this.contactService.updateContact(contact);
+        this.contactService.updateContact(contact).
+          subscribe((data) => {
+            this.formContact.reset();
+          },
+            (error) => {
+              console.log(error);
+            })
       } else {
         this.contactService.createContact(contact)
           .subscribe((data) => {
-            this.contact = data;
             this.formContact.reset();
           },
             (error) => {

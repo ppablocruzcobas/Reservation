@@ -2,16 +2,16 @@ package com.isu.reservation.model;
 
 import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.type.BooleanType;
 
 @Entity
 @Table(name = "reservation")
@@ -22,7 +22,8 @@ public class Reservation {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "description")
+    @Lob
+    @Column(name = "description", length = 10000)
     private String description;
 
     @Column(name = "date")
@@ -34,7 +35,7 @@ public class Reservation {
     @Column(name = "stars")
     private Integer stars;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_id", referencedColumnName = "id")
     private Contact contact;
 

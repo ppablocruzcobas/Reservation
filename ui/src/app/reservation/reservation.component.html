@@ -45,7 +45,7 @@
   <!-- Insert ContactListComponent here, hidden at first -->
   <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">
     <div fxFlex="80" fxLayout="column">
-      <app-contact-list *ngIf="contactListVisible"></app-contact-list>
+      <app-contact-list #contactList [contactsData]="contacts" *ngIf="contactListVisible"></app-contact-list>
     </div>
   </div>
 

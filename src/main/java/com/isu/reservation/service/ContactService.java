@@ -14,34 +14,34 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ContactService {
 
-    @Autowired
-    ContactRepository contactRepository;
+  @Autowired
+  ContactRepository contactRepository;
 
-    public List<Contact> contacts() {
-        Iterable<Contact> it = contactRepository.findAll();
-        List<Contact> contacts = new ArrayList<Contact>();
+  public List<Contact> contacts() {
+    Iterable<Contact> it = contactRepository.findAll();
+    List<Contact> contacts = new ArrayList<Contact>();
 
-        it.forEach(e -> contacts.add(e));
+    it.forEach(e -> contacts.add(e));
 
-        return contacts;
-    }
+    return contacts;
+  }
 
-    public Contact find(Long id) {
-        return contactRepository.findById(id).get();
-    }
+  public Contact find(Long id) {
+    return contactRepository.findById(id).get();
+  }
 
-    @Transactional
-    public Contact save(Contact contact) {
-        return contactRepository.save(contact);
-    }
+  @Transactional
+  public Contact save(Contact contact) {
+    return contactRepository.save(contact);
+  }
 
-    @Transactional
-    public void update(Contact contact) {
-        save(contact);
-    }
+  @Transactional
+  public Contact update(Contact contact) {
+    return save(contact);
+  }
 
-    @Transactional
-    public void delete(Long id) {
-        contactRepository.deleteById(id);
-    }
+  @Transactional
+  public void delete(Long id) {
+    contactRepository.deleteById(id);
+  }
 }

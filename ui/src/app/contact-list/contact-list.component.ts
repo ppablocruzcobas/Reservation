@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterViewInit, ViewChild} from '@angular/core';
+import {Component, OnInit, AfterViewInit, ViewChild, Input} from '@angular/core';
 import {ContactService} from '../service/contact.service';
 import {Contact} from '../model/contact';
 
@@ -17,35 +17,40 @@ export class ContactListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   displayedColumns: string[] = ['name', 'type', 'phone', 'birthday', 'actions'];
-  contacts: MatTableDataSource<Contact>;
+
+  contactsTable: MatTableDataSource<Contact>;
+
+  @Input()
+  contactsData: Contact[];
 
   constructor(private contactService: ContactService) {
-    this.contacts = new MatTableDataSource();
+    this.contactsTable = new MatTableDataSource();
   }
 
   ngOnInit(): void {
-    this.contactService.getAllContacts()
-      .subscribe((data) => this.contacts.data = data,
-        (error) => {
-          console.log(error);
-        });
+    this.contactsTable.data = this.contactsData;
   }
 
   ngAfterViewInit() {
-    this.contacts.paginator = this.paginator;
-    this.contacts.sort = this.sort;
+    this.contactsTable.paginator = this.paginator;
+    this.contactsTable.sort = this.sort;
   }
 
   onDelete(id: string) {
     this.contactService.deleteContact(id)
       .subscribe((data) => {
-        let index = this.contacts.data.findIndex(x => x.id == id);
-        this.contacts.data.splice(index, 1);
-        this.contacts._updateChangeSubscription();
+        let index = this.contactsData.findIndex(x => x.id == id);
+        this.contactsData.splice(index, 1);
+        this.update();
       },
         (error) => {
           console.log(error);
         });
+  }
+
+  update() {
+    // FIXME: It's not the correct way of update the data.
+    this.contactsTable.data = this.contactsData;
   }
 
 }

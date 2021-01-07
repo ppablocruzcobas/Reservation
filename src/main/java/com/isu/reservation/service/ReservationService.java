@@ -15,27 +15,37 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ReservationService {
 
-    @Autowired
-    ReservationRepository reservationRepository;
+  @Autowired
+  ReservationRepository reservationRepository;
 
-    @Autowired
-    ContactRepository contactRepository;
+  @Autowired
+  ContactRepository contactRepository;
 
-    public List<Reservation> reservations() {
-        Iterable<Reservation> it = reservationRepository.findAll();
-        List<Reservation> reservations = new ArrayList<Reservation>();
+  public List<Reservation> reservations() {
+    Iterable<Reservation> it = reservationRepository.findAll();
+    List<Reservation> reservations = new ArrayList<Reservation>();
 
-        it.forEach(e -> reservations.add(e));
+    it.forEach(e -> reservations.add(e));
 
-        return reservations;
+    return reservations;
+  }
+
+  public Reservation find(Long id) {
+    return reservationRepository.findById(id).get();
+  }
+
+  @Transactional
+  public Reservation save(Reservation reservation) {
+    if (reservation.getContact().getId() == null) {
+      Contact contact = contactRepository.save(reservation.getContact());
+      reservation.setContact(contact);
     }
+    return reservationRepository.save(reservation);
+  }
 
-    @Transactional
-    public Reservation save(Reservation reservation) {
-        if (reservation.getContact().getId() == null) {
-            Contact contact = contactRepository.save(reservation.getContact());
-            reservation.setContact(contact);
-        }
-        return reservationRepository.save(reservation);
-    }
+  @Transactional
+  public Contact update(Reservation reservation) {
+    return save(reservation).getContact();
+  }
+
 }

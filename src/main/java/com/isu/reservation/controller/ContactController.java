@@ -21,58 +21,58 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class ContactController {
 
-    @Autowired
-    private ContactService contactService;
+  @Autowired
+  private ContactService contactService;
 
-    @GetMapping("/contacts")
-    public ResponseEntity<?> getAllContacts() {
-        List<Contact> contacts = new ArrayList<Contact>();
-        try {
-            contacts = contactService.contacts();
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-        return ResponseEntity.ok(contacts);
+  @GetMapping("/contacts")
+  public ResponseEntity<?> getAllContacts() {
+    List<Contact> contacts = new ArrayList<Contact>();
+    try {
+      contacts = contactService.contacts();
+    } catch (Exception e) {
+      return ResponseEntity.badRequest().body(e.getMessage());
     }
+    return ResponseEntity.ok(contacts);
+  }
 
-    @PostMapping("/contact")
-    public ResponseEntity<?> createContact(@RequestBody Contact contact) {
-        try {
-            contactService.save(contact);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-        return ResponseEntity.ok("Contact Created.");
+  @PostMapping("/contact")
+  public ResponseEntity<?> createContact(@RequestBody Contact contact) {
+    try {
+      contactService.save(contact);
+    } catch (Exception e) {
+      return ResponseEntity.badRequest().body(e.getMessage());
     }
+    return ResponseEntity.ok("Contact Created.");
+  }
 
-    @GetMapping("/contact/{id}")
-    public ResponseEntity<?> findContact(@PathVariable("id") Long id) {
-        Contact contact = new Contact();
-        try {
-            contact = contactService.find(id);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-        return ResponseEntity.ok(contact);
+  @GetMapping("/contact/{id}")
+  public ResponseEntity<?> findContact(@PathVariable("id") Long id) {
+    Contact contact = new Contact();
+    try {
+      contact = contactService.find(id);
+    } catch (Exception e) {
+      return ResponseEntity.badRequest().body(e.getMessage());
     }
+    return ResponseEntity.ok(contact);
+  }
 
-    @PutMapping("/contact")
-    public ResponseEntity<?> editContact(@RequestBody Contact contact) {
-        try {
-            contactService.update(contact);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-        return ResponseEntity.ok("{}");
+  @PutMapping("/contact")
+  public ResponseEntity<?> editContact(@RequestBody Contact contact) {
+    try {
+      contact = contactService.update(contact);
+    } catch (Exception e) {
+      return ResponseEntity.badRequest().body(e.getMessage());
     }
+    return ResponseEntity.ok(contact);
+  }
 
-    @DeleteMapping("/contact/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
-        try {
-            contactService.delete(id);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-        return ResponseEntity.ok("{}");
+  @DeleteMapping("/contact/{id}")
+  public ResponseEntity<?> delete(@PathVariable("id") Long id) {
+    try {
+      contactService.delete(id);
+    } catch (Exception e) {
+      return ResponseEntity.badRequest().body(e.getMessage());
     }
+    return ResponseEntity.ok("{}");
+  }
 }

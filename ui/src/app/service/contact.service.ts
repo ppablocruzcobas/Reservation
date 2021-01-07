@@ -18,15 +18,12 @@ export class ContactService {
     return this.http.get<Contact>("api/contact/" + id);
   }
 
-  updateContact(contact: Contact) {
+  updateContact(contact: Contact): Observable<Contact> {
     let options = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
 
-    this.http.put("/api/contact", contact, options)
-      .subscribe((error) => {
-        console.log(error);
-      });
+    return this.http.put<Contact>("/api/contact", contact, options);
   }
 
   createContact(contact: Contact): Observable<Contact> {
