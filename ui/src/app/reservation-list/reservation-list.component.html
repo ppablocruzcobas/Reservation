@@ -11,27 +11,30 @@
   </div>
 </mat-toolbar>
 
-<mat-toolbar fxShow.gt-xs="true" fxShow="false" style="background-color: #E2E3E4">
-  <div fxLayout="row" fxFlexFill>
-    <div fxFlex=20 fxLayout="column" fxLayoutAlign="start start">
-      <h6 style="color: #C26665; font-size: 24px;">Reservations List</h6>
+<div class="bounds" style="background-color: #E2E3E4">
+  <div fxLayout="row wrap" fxLayout.xs="column">
+
+    <div fxFlex="32" fxLayoutAlign="start start">
+      <h6 style="color: #C26665; font-size: 20px;">Reservations List</h6>
     </div>
 
-    <div fxFlex=60 fxLayout="column" fxLayoutAlign="start center">
+    <div fxFlex="40" fxLayoutAlign="center center">
       <p style="font-size: 12px;">
-        <!-- Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et -->
-        <!-- dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet -->
-        <!-- clita -->
-        <!-- kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. -->
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+        clita
+        kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
       </p>
     </div>
 
-    <div fxFlex=20 fxLayout="column" fxLayoutAlign="center end">
+    <div fxFlex="28" fxShow.gt-xs="true" fxShow="false" fxLayoutAlign="end center">
       <button mat-raised-button color="primary" type="button" onclick="location.href='/reservation'">CREATE
         RESERVATION</button>
     </div>
+
   </div>
-</mat-toolbar>
+</div>
+
 
 <div class="mat-elevation-z8">
 
