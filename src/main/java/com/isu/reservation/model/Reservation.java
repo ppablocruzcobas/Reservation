@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.type.BooleanType;
+
 @Entity
 @Table(name = "reservation")
 public class Reservation {
@@ -25,6 +27,12 @@ public class Reservation {
 
     @Column(name = "date")
     private Timestamp date;
+
+    @Column(name = "favorite")
+    private Integer favorite;
+
+    @Column(name = "stars")
+    private Integer stars;
 
     @ManyToOne
     @JoinColumn(name = "contact_id", referencedColumnName = "id")
@@ -56,5 +64,21 @@ public class Reservation {
 
     public Contact getContact() {
         return contact;
+    }
+
+    public void setFavorite(Integer favorite) {
+        this.favorite = favorite;
+    }
+
+    public Integer getFavorite() {
+        return favorite;
+    }
+
+    public void setStars(Integer stars) {
+        this.stars = stars;
+    }
+
+    public Integer getStars() {
+        return stars;
     }
 }

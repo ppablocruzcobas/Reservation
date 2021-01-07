@@ -27,36 +27,59 @@
     </div>
 
     <div fxFlex=20 fxLayout="column" fxLayoutAlign="center end">
-      <button mat-raised-button color="primary" type="button" onclick="location.href='/reservation'">Create
-        Reservation</button>
+      <button mat-raised-button color="primary" type="button" onclick="location.href='/reservation'">CREATE
+        RESERVATION</button>
     </div>
   </div>
 </mat-toolbar>
 
 <div class="mat-elevation-z8">
-  <table mat-table matSort [dataSource]="reservations">
 
-    <!-- Contact Name Column -->
-    <ng-container matColumnDef="contact">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.contact.name}} </td>
-    </ng-container>
+  <mat-list>
+    <mat-list-item *ngFor="let reservation of reservations">
+      <div matLine>
+        <div fxLayout="row wrap" fxFlexFill fxLayoutAlign="space-between" style="background-color: #DBDCDD;">
 
-    <!-- Description Column -->
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-    </ng-container>
+          <div fxFlex="25" fxFlex.xs="50" fxLayout="column">
+            <div fxLayout="row">
+              <strong> {{reservation.contact.name}} </strong>
+            </div>
+            <div fxLayout="row" style="font-size: 12px;">
+              {{reservation.date | date: 'E, MMMM d At hh:mm a'}}
+            </div>
+          </div>
 
-    <!-- Date Column -->
-    <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-      <td mat-cell *matCellDef="let element"> {{element.date | date:'dd/MM/yyyy'}} </td>
-    </ng-container>
+          <div fxFlex="25" fxLayout="column" fxShow.gt-xs="true" fxShow="false">
+            <div fxLayout="row">
+              Ranking
+            </div>
+            <div fxLayout="row">
+              {{ reservation.stars }}
+            </div>
+          </div>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+          <div fxFlex="10" fxLayout="column" fxLayoutAlign="center end">
+            <div fxLayout="row">
+              <div fxLayout="column" fxShow.gt-xs="true" fxShow="false">
+                <label [ngStyle]="{'color': reservation.favorite ? 'grey': 'black'}">Add Favorites</label>
+              </div>
+              <div fxLayout="column">
+                <mat-icon aria-label="Favorite" [ngStyle]="{'color': reservation.favorite ? 'red': 'grey'}">favorite
+                </mat-icon>
+              </div>
+            </div>
+          </div>
+
+          <div fxFlex="10" fxLayout="column" fxLayoutAlign="center end">
+            <button mat-raised-button color="primary" type="button"
+              [routerLink]="['/reservation/', reservation.id]">EDIT</button>
+          </div>
+
+        </div>
+      </div>
+    </mat-list-item>
+  </mat-list>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+
 </div>

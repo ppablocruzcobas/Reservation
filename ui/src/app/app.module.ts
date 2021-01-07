@@ -14,6 +14,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
 
 import {FlexLayoutModule} from '@angular/flex-layout';
 
@@ -56,6 +57,7 @@ import {FormSubmitComponent} from './form-submit/form-submit.component';
     MatPaginatorModule,
     MatButtonModule,
     MatIconModule,
+    MatListModule,
     FlexLayoutModule,
     QuillModule.forRoot()
   ],
