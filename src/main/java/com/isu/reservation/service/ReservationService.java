@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+// Service to perform CRUD operations with the Reservation model
+
 @Service
 public class ReservationService {
 

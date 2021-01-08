@@ -1,42 +1,45 @@
 <form [formGroup]="formContact">
 
-  <div fxLayout="row" fxFlexFill fxLayout.xs="column" fxLayoutAlign="space-evenly">
+  <div fxLayoutAlign="center">
+    <div fxLayout="row" fxFlexFill fxFlex="80" fxFlex.xs="90" fxLayout.xs="column" fxLayoutAlign="space-between"
+      style="background-color: #E4E4E5">
 
-    <div fxFlex="20" fxLayout="column">
-      <mat-form-field appearance="fill">
-        <input matInput type="text" placeholder="Contact Name..." formControlName="name" />
-        <mat-icon style="color: grey;" matPrefix>people</mat-icon>
-        <mat-error>* This field is mandatory.</mat-error>
-      </mat-form-field>
+      <div fxFlex="24" fxLayout="column">
+        <mat-form-field appearance="fill">
+          <input matInput type="text" placeholder="Contact Name..." formControlName="name" />
+          <mat-icon style="color: grey;" matPrefix>people</mat-icon>
+          <mat-error>* This field is mandatory.</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="24" fxLayout="column">
+        <mat-form-field floatlabel="never" appearance="fill">
+          <mat-select placeholder="Contact Type" formControlName="type">
+            <mat-option *ngFor="let ctype of typeContact" [value]="ctype.value">{{ctype.name}}</mat-option>
+          </mat-select>
+          <mat-icon style="color: grey;" matPrefix>public</mat-icon>
+          <mat-error>* This field is mandatory.</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="24" fxLayout="column">
+        <mat-form-field appearance="fill">
+          <input matInput type="string" placeholder="Phone:" formControlName="phone" />
+          <mat-icon style="color: grey;" matPrefix>phone</mat-icon>
+          <mat-error>* This field is mandatory.</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="24" fxLayout="column">
+        <mat-form-field appearance="fill">
+          <input matInput [matDatepicker]="picker" placeholder="Birthday" formControlName="birthday" />
+          <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error>* This field is mandatory.</mat-error>
+        </mat-form-field>
+      </div>
+
     </div>
-
-    <div fxFlex="20" fxLayout="column">
-      <mat-form-field floatlabel="never" appearance="fill">
-        <mat-select placeholder="Contact Type" formControlName="type">
-          <mat-option *ngFor="let ctype of typeContact" [value]="ctype.value">{{ctype.name}}</mat-option>
-        </mat-select>
-        <mat-icon style="color: grey;" matPrefix>public</mat-icon>
-        <mat-error>* This field is mandatory.</mat-error>
-      </mat-form-field>
-    </div>
-
-    <div fxFlex="20" fxLayout="column">
-      <mat-form-field appearance="fill">
-        <input matInput type="string" placeholder="Phone:" formControlName="phone" />
-        <mat-icon style="color: grey;" matPrefix>phone</mat-icon>
-        <mat-error>* This field is mandatory.</mat-error>
-      </mat-form-field>
-    </div>
-
-    <div fxFlex="20" fxLayout="column">
-      <mat-form-field appearance="fill">
-        <input matInput [matDatepicker]="picker" placeholder="Birthday" formControlName="birthday" />
-        <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-        <mat-error>* This field is mandatory.</mat-error>
-      </mat-form-field>
-    </div>
-
   </div>
 
 </form>

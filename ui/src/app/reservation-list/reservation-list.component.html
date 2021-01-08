@@ -1,63 +1,71 @@
 <app-top-banner [pageName]="pageName" [gotoName]="gotoName" [gotoLink]="gotoLink" [gotoIcon]="gotoIcon">
 </app-top-banner>
 
-<div class="mat-elevation-z8">
+<div fxLayoutAlign="center">
+  <div fxFlex="80" fxFlex.xs="90" fxLayout="column">
 
-  <mat-form-field appearance="fill">
-    <mat-select placeholder="Sort by" [(value)]="selectValue" (selectionChange)="onSortChanged($event.value)">
-      <mat-option *ngFor="let sort of sortBy" [value]=sort.value>{{sort.name}}</mat-option>
-    </mat-select>
-    <mat-icon style="color: grey;" matPrefix>sort</mat-icon>
-  </mat-form-field>
+    <div fxLayout="row" fxLayout.xs="column">
+      <mat-form-field appearance="fill">
+        <mat-select placeholder="Sort by" [(value)]="selectValue" (selectionChange)="onSortChanged($event.value)">
+          <mat-option *ngFor="let sort of sortBy" [value]=sort.value>{{sort.name}}</mat-option>
+        </mat-select>
+        <mat-icon style="color: grey;" matPrefix>sort</mat-icon>
+      </mat-form-field>
+    </div>
 
-  <mat-list>
+    <div class="mat-elevation-z1">
 
-    <mat-list-item *ngFor="let reservation of reservations">
-      <div matLine>
-        <div fxLayout="row wrap" fxFlexFill fxLayoutAlign="space-between" style="background-color: #DBDCDD;">
+      <mat-list>
 
-          <div fxFlex="25" fxFlex.xs="50" fxLayout="column">
-            <div fxLayout="row">
-              <strong> {{reservation.contact.name}} </strong>
-            </div>
-            <div fxLayout="row" style="font-size: 12px;">
-              {{reservation.date | date: 'E, MMMM d At hh:mm a'}}
-            </div>
-          </div>
+        <mat-list-item *ngFor="let reservation of reservations">
+          <div matLine>
+            <div fxLayout="row wrap" fxFlexFill fxLayoutAlign="space-between" style="background-color: #DBDCDD;">
 
-          <div fxFlex="25" fxLayout="column" fxShow.gt-xs="true" fxShow="false">
-            <div fxLayout="row">
-              Ranking
-            </div>
-            <div fxLayout="row">
-              <ngx-stars [initialStars]="reservation.stars" (ratingOutput)="onRatingClick($event, reservation)">
-              </ngx-stars>
-            </div>
-          </div>
-
-          <div fxFlex="10" fxLayout="column" fxLayoutAlign="center end" (click)="onFavoriteClick(reservation)">
-            <div fxLayout="row">
-              <div fxLayout="column" fxShow.gt-xs="true" fxShow="false">
-                <label [ngStyle]="{'color': reservation.favorite ? 'grey': 'black'}">Add Favorites</label>
+              <div fxFlex="25" fxFlex.xs="50" fxLayout="column">
+                <div fxLayout="row">
+                  <strong> {{reservation.contact.name}} </strong>
+                </div>
+                <div fxLayout="row" style="font-size: 12px;">
+                  {{reservation.date | date: 'E, MMMM d At hh:mm a'}}
+                </div>
               </div>
-              <div fxLayout="column">
-                <mat-icon aria-label="Favorite" [ngStyle]="{'color': reservation.favorite ? 'red': 'grey'}">favorite
-                </mat-icon>
+
+              <div fxFlex="25" fxLayout="column" fxShow.gt-xs="true" fxShow="false">
+                <div fxLayout="row">
+                  Ranking
+                </div>
+                <div fxLayout="row">
+                  <ngx-stars [initialStars]="reservation.stars" (ratingOutput)="onRatingClick($event, reservation)">
+                  </ngx-stars>
+                </div>
               </div>
+
+              <div fxFlex="10" fxLayout="column" fxLayoutAlign="center end" (click)="onFavoriteClick(reservation)">
+                <div fxLayout="row">
+                  <div fxLayout="column" fxShow.gt-xs="true" fxShow="false">
+                    <label [ngStyle]="{'color': reservation.favorite ? 'grey': 'black'}">Add Favorites</label>
+                  </div>
+                  <div fxLayout="column">
+                    <mat-icon aria-label="Favorite" [ngStyle]="{'color': reservation.favorite ? 'red': 'grey'}">favorite
+                    </mat-icon>
+                  </div>
+                </div>
+              </div>
+
+              <div fxFlex="10" fxLayout="column" fxLayoutAlign="center end">
+                <button mat-raised-button color="primary" type="button"
+                  [routerLink]="['/reservation/', reservation.id]">EDIT</button>
+              </div>
+
             </div>
           </div>
+        </mat-list-item>
 
-          <div fxFlex="10" fxLayout="column" fxLayoutAlign="center end">
-            <button mat-raised-button color="primary" type="button"
-              [routerLink]="['/reservation/', reservation.id]">EDIT</button>
-          </div>
+        <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
 
-        </div>
-      </div>
-    </mat-list-item>
+      </mat-list>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+    </div>
 
-  </mat-list>
-
+  </div>
 </div>

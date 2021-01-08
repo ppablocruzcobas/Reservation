@@ -16,6 +16,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
+// The Entity Contact
+// Validations were made using annotations.
+
 @Entity
 @Table(name = "contact")
 public class Contact {
@@ -42,6 +45,10 @@ public class Contact {
     @Past(message = "Cannot be borned in the future")
     private Timestamp birthday;
 
+    // This 'cascade' allows me to delete Contacts without manual delete of his
+    // reservations,
+    // since it performs CRUD operations in cascade.
+    // Place ForeignKey in Reservation, pointing to the User who owns it.
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "contact")
     private List<Reservation> reservations = new ArrayList<>();
 

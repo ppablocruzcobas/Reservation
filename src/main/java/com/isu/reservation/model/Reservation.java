@@ -16,6 +16,9 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
+// The Entity Reservation
+// Validations were made using annotations.
+
 @Entity
 @Table(name = "reservation")
 public class Reservation {
@@ -40,6 +43,7 @@ public class Reservation {
     @Max(value = 5, message = "Stars cannot be greater than 5")
     private Float stars;
 
+    // Here the ForeignKey of the Contact who owns the reservation.
     @ManyToOne()
     @JoinColumn(name = "contact_id", referencedColumnName = "id")
     @NotEmpty(message = "Contact cannot be null or empty")

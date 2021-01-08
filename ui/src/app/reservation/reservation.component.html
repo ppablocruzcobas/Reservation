@@ -1,13 +1,19 @@
 <app-top-banner [pageName]="pageName" [gotoName]="gotoName" [gotoLink]="gotoLink" [gotoIcon]="gotoIcon">
 </app-top-banner>
 
-<div fxLayout="row" fxLayoutAlign="end">
-  <div fxLayout="column">
-    <button mat-raised-button [disabled]="contactListVisible" color="primary" type="button"
-      (click)="onShowContactList()">List</button>
-  </div>
-  <div fxLayout="column">
-    <button mat-raised-button color="primary" type="button" onclick="location.href='/contact'">Create</button>
+<div fxLayoutAlign="center">
+  <div fxFlex="80" fxFlex.xs="90" fxLayout="column">
+
+    <div fxLayout="row" fxLayoutAlign="end">
+      <div fxLayout="column">
+        <button mat-raised-button [disabled]="contactListVisible" color="primary" type="button"
+          (click)="onShowContactList()">List</button>
+      </div>
+      <div fxLayout="column">
+        <button mat-raised-button color="primary" type="button" onclick="location.href='/contact'">Create</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -17,14 +23,14 @@
   <app-form-contact [formContact]="formContact"></app-form-contact>
 
   <!-- Insert ContactListComponent here, hidden at first -->
-  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">
-    <div fxFlex="80" fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="center">
+    <div fxFlex="80" fxFlex.xs="90" fxLayout="column">
       <app-contact-list [contactsData]="contacts" *ngIf="contactListVisible"></app-contact-list>
     </div>
   </div>
 
-  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">
-    <div fxFlex="80" fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="center">
+    <div fxFlex="80" fxFlex.xs="90" fxLayout="column">
       <quill-editor matInput [styles]="{height: '200px'}" formControlName="description"></quill-editor>
     </div>
   </div>

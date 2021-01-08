@@ -1,35 +1,37 @@
 <mat-toolbar fxShow.gt-xs="false" fxShow="true"
-  style="background-image: url('../assets/toolbar-background.jpg'); background-size: cover;">
-  <div fxLayout="row" fxFlexFill>
-    <div fxFlex fxLayout="column" fxLayoutAlign="center begin">
+  style="background-image: url('../assets/toolbar-background.jpg'); background-size: cover">
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxFlexFill>
+    <div>
       <h6 style="color: white; font-size: 24px;"><strong>ISU</strong>Corp</h6>
     </div>
 
-    <div fxFlex fxLayout="column" fxLayoutAlign="center end">
+    <div>
       <a href={{gotoLink}} style="color: white; font-size: 16px;">{{gotoIcon}} {{gotoName}}</a>
     </div>
   </div>
 </mat-toolbar>
 
 <div class="bounds" style="background-color: #E2E3E4">
-  <div fxLayout="row wrap" fxLayout.xs="column">
+  <div fxLayoutAlign="center">
+    <div fxFlex="80" fxFlex.xs="90" fxLayout="row" fxLayout.xs="column">
 
-    <div fxFlex="32" fxLayoutAlign="start start">
-      <h6 style="color: #C26665; font-size: 20px;">{{pageName}}</h6>
+      <div>
+        <h6 style="color: #C26665; font-size: 20px;">{{pageName}}</h6>
+      </div>
+
+      <div>
+        <p style="text-align: justify; font-size: 12px;">
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+          dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+          clita
+          kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        </p>
+      </div>
+
+      <div fxShow.gt-xs="true" fxShow="false">
+        <a class="mat-raised-button" href={{gotoLink}} style="text-transform: uppercase">{{gotoName}}</a>
+      </div>
+
     </div>
-
-    <div fxFlex="40" fxLayoutAlign="center center">
-      <p style="font-size: 12px;">
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-        clita
-        kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      </p>
-    </div>
-
-    <div fxFlex="28" fxShow.gt-xs="true" fxShow="false" fxLayoutAlign="end center">
-      <a class="mat-raised-button" href={{gotoLink}} style="text-transform: uppercase">{{gotoName}}</a>
-    </div>
-
   </div>
 </div>
