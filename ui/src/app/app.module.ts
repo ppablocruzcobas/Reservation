@@ -31,6 +31,7 @@ import {ReservationComponent} from './reservation/reservation.component';
 import {ReservationListComponent} from './reservation-list/reservation-list.component';
 import {FormContactComponent} from './form-contact/form-contact.component';
 import {FormSubmitComponent} from './form-submit/form-submit.component';
+import { TopBannerComponent } from './top-banner/top-banner.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {FormSubmitComponent} from './form-submit/form-submit.component';
     ReservationListComponent,
     FormContactComponent,
     FormSubmitComponent,
+    TopBannerComponent,
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,12 @@ import {ContactListComponent} from '../contact-list/contact-list.component';
 })
 export class ReservationComponent implements OnInit {
 
+  // Top Banner variables...
+  gotoLink: string = "/reservations";
+  gotoName: string = "Reservations List";
+  pageName: string = "Create Reservation";
+  gotoIcon: any = ''
+
   formContact = new FormGroup({
     name: new FormControl('', Validators.required),
     type: new FormControl('', Validators.required),
@@ -94,7 +100,7 @@ export class ReservationComponent implements OnInit {
             this.contact = this.contacts.find(x => x.id == reservation.contact.id);
             let index = this.contacts.indexOf(this.contact);
             this.contacts[index] = data;
-            this.reset();
+            this.resetAndUpdate();
           },
             (error) => {
               console.log(error);
@@ -109,7 +115,7 @@ export class ReservationComponent implements OnInit {
         this.reservationService.createReservation(reservation)
           .subscribe((data) => {
             this.contacts.push(data);
-            this.reset();
+            this.resetAndUpdate();
           },
             (error) => {
               console.log(error);
@@ -118,8 +124,7 @@ export class ReservationComponent implements OnInit {
     }
   }
 
-  reset() {
-    // Fire event to update list
+  resetAndUpdate() {
     this.contactList.update();
 
     this.formReservation.reset();

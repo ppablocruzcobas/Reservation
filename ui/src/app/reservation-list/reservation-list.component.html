@@ -1,44 +1,17 @@
-<mat-toolbar fxShow.gt-xs="false" fxShow="true"
-  style="background-image: url('../assets/toolbar-background.jpg'); background-size: cover;">
-  <div fxLayout="row" fxFlexFill>
-    <div fxFlex fxLayout="column" fxLayoutAlign="center begin">
-      <h6 style="color: white; font-size: 24px;"><strong>ISU</strong>Corp</h6>
-    </div>
-
-    <div fxFlex fxLayout="column" fxLayoutAlign="center end">
-      <a href="/reservation" style="color: white; font-size: 16px;">&#x25C0; Create Reservation</a>
-    </div>
-  </div>
-</mat-toolbar>
-
-<div class="bounds" style="background-color: #E2E3E4">
-  <div fxLayout="row wrap" fxLayout.xs="column">
-
-    <div fxFlex="32" fxLayoutAlign="start start">
-      <h6 style="color: #C26665; font-size: 20px;">Reservations List</h6>
-    </div>
-
-    <div fxFlex="40" fxLayoutAlign="center center">
-      <p style="font-size: 12px;">
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-        clita
-        kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      </p>
-    </div>
-
-    <div fxFlex="28" fxShow.gt-xs="true" fxShow="false" fxLayoutAlign="end center">
-      <button mat-raised-button color="primary" type="button" onclick="location.href='/reservation'">CREATE
-        RESERVATION</button>
-    </div>
-
-  </div>
-</div>
-
+<app-top-banner [pageName]="pageName" [gotoName]="gotoName" [gotoLink]="gotoLink" [gotoIcon]="gotoIcon">
+</app-top-banner>
 
 <div class="mat-elevation-z8">
 
+  <mat-form-field appearance="fill">
+    <mat-select placeholder="Sort by" [(value)]="selectValue" (selectionChange)="onSortChanged($event.value)">
+      <mat-option *ngFor="let sort of sortBy" [value]=sort.value>{{sort.name}}</mat-option>
+    </mat-select>
+    <mat-icon style="color: grey;" matPrefix>sort</mat-icon>
+  </mat-form-field>
+
   <mat-list>
+
     <mat-list-item *ngFor="let reservation of reservations">
       <div matLine>
         <div fxLayout="row wrap" fxFlexFill fxLayoutAlign="space-between" style="background-color: #DBDCDD;">
@@ -82,8 +55,9 @@
         </div>
       </div>
     </mat-list-item>
-  </mat-list>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+    <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+
+  </mat-list>
 
 </div>

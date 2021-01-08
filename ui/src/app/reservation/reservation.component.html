@@ -1,39 +1,5 @@
-<mat-toolbar fxShow.gt-xs="false" fxShow="true"
-  style="background-image: url('../assets/toolbar-background.jpg'); background-size: cover;">
-  <div fxLayout="row" fxFlexFill>
-    <div fxFlex fxLayout="column" fxLayoutAlign="center begin">
-      <h6 style="color: white; font-size: 24px;"><strong>ISU</strong>Corp</h6>
-    </div>
-
-    <div fxFlex fxLayout="column" fxLayoutAlign="center end">
-      <a href="/reservations" style="color: white; font-size: 16px;">Reservations List &#x25B6;</a>
-    </div>
-  </div>
-</mat-toolbar>
-
-<div class="bounds" style="background-color: #E2E3E4">
-  <div fxLayout="row" fxLayout.xs="column" fxFlexFill>
-
-    <div fxLayoutAlign="start start">
-      <h6 style="color: #C26665; font-size: 20px;">Create Reservation</h6>
-    </div>
-
-    <div fxLayoutAlign="stretch stretch">
-      <p style="font-size: 12px;">
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-        clita
-        kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      </p>
-    </div>
-
-    <div fxShow.gt-xs="true" fxShow="false" fxLayoutAlign="end center">
-      <button mat-raised-button color="primary" type="button" onclick="location.href='/reservations'">RESERVATIONS
-        LIST</button>
-    </div>
-
-  </div>
-</div>
+<app-top-banner [pageName]="pageName" [gotoName]="gotoName" [gotoLink]="gotoLink" [gotoIcon]="gotoIcon">
+</app-top-banner>
 
 <div fxLayout="row" fxLayoutAlign="end">
   <div fxLayout="column">
@@ -53,7 +19,7 @@
   <!-- Insert ContactListComponent here, hidden at first -->
   <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center">
     <div fxFlex="80" fxLayout="column">
-      <app-contact-list #contactList [contactsData]="contacts" *ngIf="contactListVisible"></app-contact-list>
+      <app-contact-list [contactsData]="contacts" *ngIf="contactListVisible"></app-contact-list>
     </div>
   </div>
 
