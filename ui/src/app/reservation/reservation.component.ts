@@ -1,11 +1,11 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {Contact} from '../model/contact';
 import {Reservation} from '../model/reservation';
 import {ContactService} from '../service/contact.service';
 import {ReservationService} from '../service/reservation.service';
 import {ActivatedRoute, Params} from '@angular/router';
-import {ContactListComponent} from '../contact-list/contact-list.component';
+import {DataService} from '../service/data.service';
 
 @Component({
   selector: 'app-reservation',
@@ -32,18 +32,20 @@ export class ReservationComponent implements OnInit {
     description: new FormControl()
   });
 
+  // The Contact list, is shared with ContactListComponent.
   contacts: Contact[];
+
   contact: Contact;
   reservation: Reservation;
 
+  // When loaded, the contact list is hidden until user decide to show it.
   contactListVisible = false;
 
-  @ViewChild('contactList')
-  private contactList: ContactListComponent;
-
   constructor(private route: ActivatedRoute,
+    private dataService: DataService,
     private reservationService: ReservationService,
-    private contactService: ContactService) {}
+    private contactService: ContactService) {
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -64,6 +66,7 @@ export class ReservationComponent implements OnInit {
       .subscribe((data) => {
         this.contacts = data;
 
+        // Subscribe to value changes in the name.
         this.formContact.get('name').valueChanges
           .subscribe((value) => {
             this.onContactNameInput(value);
@@ -74,6 +77,15 @@ export class ReservationComponent implements OnInit {
         });
   }
 
+  /**
+   * If an existing Contact is found, fill the others field.
+   * IMPORTANT!!!: Note that I don't reset the others field when there is not match,
+   * which allow to change the name while remaining others field untouched, but this means
+   * that when submiting a new contact will be created (view submit implementation below).
+   *
+   * @param {string} name
+   * @memberof ReservationComponent
+   */
   onContactNameInput(name: string) {
     this.contact = this.contacts.find(x => x.name == name);
     if (this.contact != undefined) {
@@ -83,6 +95,7 @@ export class ReservationComponent implements OnInit {
     }
   }
 
+  // Show the Contact List and also disable the button (in the View).
   onShowContactList() {
     this.contactListVisible = !this.contactListVisible;
   }
@@ -94,13 +107,17 @@ export class ReservationComponent implements OnInit {
       if (this.reservation) { // Updating...
         reservation.id = this.reservation.id;
         reservation.contact.id = this.reservation.contact.id;
+        reservation.stars = this.reservation.stars;
+        reservation.favorite = this.reservation.favorite;
 
         this.reservationService.updateReservation(reservation)
           .subscribe((data) => {
+            // Find the index and update info in the Table,
+            // this way I don't have to refresh or consume the API again.
             this.contact = this.contacts.find(x => x.id == reservation.contact.id);
             let index = this.contacts.indexOf(this.contact);
             this.contacts[index] = data;
-            this.resetAndUpdate();
+            this.updateAndReset();
           },
             (error) => {
               console.log(error);
@@ -114,8 +131,9 @@ export class ReservationComponent implements OnInit {
         // Otherwise create both contact and reservation...
         this.reservationService.createReservation(reservation)
           .subscribe((data) => {
+            // Update the Table with the info of the Contact created.
             this.contacts.push(data);
-            this.resetAndUpdate();
+            this.updateAndReset();
           },
             (error) => {
               console.log(error);
@@ -124,8 +142,8 @@ export class ReservationComponent implements OnInit {
     }
   }
 
-  resetAndUpdate() {
-    this.contactList.update();
+  updateAndReset() {
+    this.dataService.update();
 
     this.formReservation.reset();
     this.contact = null;

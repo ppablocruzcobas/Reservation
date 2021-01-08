@@ -2,7 +2,6 @@ package com.isu.reservation.model;
 
 import java.sql.Timestamp;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 // The Entity Reservation
 // Validations were made using annotations.
@@ -46,7 +45,7 @@ public class Reservation {
     // Here the ForeignKey of the Contact who owns the reservation.
     @ManyToOne()
     @JoinColumn(name = "contact_id", referencedColumnName = "id")
-    @NotEmpty(message = "Contact cannot be null or empty")
+    @NotNull(message = "Contact cannot be null or empty")
     private Contact contact;
 
     public Long getId() {

@@ -38,10 +38,10 @@ public class ReservationService {
 
   @Transactional
   public Reservation save(Reservation reservation) {
-    if (reservation.getContact().getId() == null) {
-      Contact contact = contactRepository.save(reservation.getContact());
-      reservation.setContact(contact);
-    }
+    // if (reservation.getContact().getId() == null) {
+    Contact contact = contactRepository.save(reservation.getContact());
+    reservation.setContact(contact);
+    // }
     return reservationRepository.save(reservation);
   }
 

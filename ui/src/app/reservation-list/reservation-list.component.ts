@@ -70,8 +70,10 @@ export class ReservationListComponent implements OnInit {
         this.reservations[index].stars = reservation.stars;
 
         // If ranking is selected for ordering, then refresh the list. 
-        if (this.selectValue.field == 'stars') {
-          this.onSortChanged(this.selectValue);
+        if (this.selectValue) {
+          if (this.selectValue.field == 'stars') {
+            this.onSortChanged(this.selectValue);
+          }
         }
       },
         (error) => {

@@ -11,6 +11,12 @@ import {ContactService} from '../service/contact.service';
 })
 export class ContactComponent implements OnInit {
 
+
+  /**
+   * Used to get / set values to the Contact Form.
+   *
+   * @memberof ContactComponent
+   */
   formContact = new FormGroup({
     name: new FormControl('', Validators.required),
     type: new FormControl('', Validators.required),
@@ -25,6 +31,7 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
+      // If 'id' is in the route then I am editing a Contact.
       if (params['id'] != undefined) {
         this.contactService.findContactById(params['id'])
           .subscribe((data) => {
@@ -42,7 +49,7 @@ export class ContactComponent implements OnInit {
     if (this.formContact.valid) {
       let contact = new Contact(this.formContact.value);
 
-      if (this.contact) {
+      if (this.contact) { // Editing since this value exists...
         contact.id = this.contact.id;
         this.contactService.updateContact(contact).
           subscribe((data) => {
@@ -51,7 +58,7 @@ export class ContactComponent implements OnInit {
             (error) => {
               console.log(error);
             })
-      } else {
+      } else { // Creating a new one...
         this.contactService.createContact(contact)
           .subscribe((data) => {
             this.formContact.reset();
