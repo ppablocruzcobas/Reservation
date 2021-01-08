@@ -11,15 +11,15 @@
   </div>
 </mat-toolbar>
 
-<div class="bounds" style="background-color: #E2E3E4">
+<div style="background-color: #FBFBFB">
   <div fxLayoutAlign="center">
-    <div fxFlex="80" fxFlex.xs="90" fxLayout="row" fxLayout.xs="column">
+    <div fxFlex="80" fxFlex.xs="90" fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px">
 
       <div>
-        <h6 style="color: #C26665; font-size: 20px;">{{pageName}}</h6>
+        <h6 style="color: #C01716; font-size: 20px;">{{pageName}}</h6>
       </div>
 
-      <div>
+      <div fxFlex="">
         <p style="text-align: justify; font-size: 12px;">
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
           dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
@@ -28,7 +28,7 @@
         </p>
       </div>
 
-      <div fxShow.gt-xs="true" fxShow="false">
+      <div fxShow.gt-xs="true" fxShow="false" fxLayoutAlign="center center">
         <a class="mat-raised-button" href={{gotoLink}} style="text-transform: uppercase">{{gotoName}}</a>
       </div>
 

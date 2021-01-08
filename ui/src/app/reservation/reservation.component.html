@@ -4,7 +4,7 @@
 <div fxLayoutAlign="center">
   <div fxFlex="80" fxFlex.xs="90" fxLayout="column">
 
-    <div fxLayout="row" fxLayoutAlign="end">
+    <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px">
       <div fxLayout="column">
         <button mat-raised-button [disabled]="contactListVisible" color="primary" type="button"
           (click)="onShowContactList()">List</button>
@@ -19,22 +19,26 @@
 
 <form [formGroup]="formReservation" (ngSubmit)="onReservationSubmit()">
 
-  <!-- Insert ContactComponent here, without Submit button -->
-  <app-form-contact [formContact]="formContact"></app-form-contact>
+  <div fxLayout="column" fxLayoutGap="10px">
 
-  <!-- Insert ContactListComponent here, hidden at first -->
-  <div fxLayout="row" fxLayoutAlign="center">
-    <div fxFlex="80" fxFlex.xs="90" fxLayout="column">
-      <app-contact-list [contactsData]="contacts" *ngIf="contactListVisible"></app-contact-list>
+    <!-- Insert ContactComponent here, without Submit button -->
+    <app-form-contact [formContact]="formContact"></app-form-contact>
+
+    <!-- Insert ContactListComponent here, hidden at first -->
+    <div fxLayout="row" fxLayoutAlign="center">
+      <div fxFlex="80" fxFlex.xs="90" fxLayout="column">
+        <app-contact-list [contactsData]="contacts" *ngIf="contactListVisible"></app-contact-list>
+      </div>
     </div>
-  </div>
 
-  <div fxLayout="row" fxLayoutAlign="center">
-    <div fxFlex="80" fxFlex.xs="90" fxLayout="column">
-      <quill-editor matInput [styles]="{height: '200px'}" formControlName="description"></quill-editor>
+    <div fxLayout="row" fxLayoutAlign="center">
+      <div fxFlex="80" fxFlex.xs="90" fxLayout="column">
+        <quill-editor matInput [styles]="{height: '200px'}" formControlName="description"></quill-editor>
+      </div>
     </div>
-  </div>
 
-  <app-form-submit></app-form-submit>
+    <app-form-submit></app-form-submit>
+
+  </div>
 
 </form>

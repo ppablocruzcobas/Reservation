@@ -1,6 +1,8 @@
 <form [formGroup]="formContact" (ngSubmit)="onContactSubmit()">
 
-  <app-form-contact [formContact]="formContact"></app-form-contact>
-  <app-form-submit></app-form-submit>
+  <div fxLayout.xs="column" fxLayoutGap="10px">
+    <app-form-contact [formContact]="formContact"></app-form-contact>
+    <app-form-submit></app-form-submit>
+  </div>
 
 </form>
