@@ -12,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 
 @Entity
 @Table(name = "contact")
@@ -23,15 +26,20 @@ public class Contact {
     private Long id;
 
     @Column(name = "name")
+    @NotEmpty(message = "Name cannot be null or empty")
     private String name;
 
     @Column(name = "type")
+    @NotEmpty(message = "Type cannot be null or empty")
     private String type;
 
     @Column(name = "phone")
+    @NotEmpty(message = "Phone cannot be null or empty")
     private String phone;
 
     @Column(name = "birthday")
+    @NotNull(message = "Birthday cannot be null or empty")
+    @Past(message = "Cannot be borned in the future")
     private Timestamp birthday;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "contact")

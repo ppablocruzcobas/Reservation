@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "reservation")
@@ -33,10 +36,13 @@ public class Reservation {
     private Boolean favorite;
 
     @Column(name = "stars")
+    @Min(value = 0, message = "Stars cannot be smaller than 0")
+    @Max(value = 5, message = "Stars cannot be greater than 5")
     private Float stars;
 
     @ManyToOne()
     @JoinColumn(name = "contact_id", referencedColumnName = "id")
+    @NotEmpty(message = "Contact cannot be null or empty")
     private Contact contact;
 
     public Long getId() {
